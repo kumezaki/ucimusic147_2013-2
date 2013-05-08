@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum { penta, blue, Maj, harmin, melmin, natmin } ScaleType;
+typedef enum { penta, blue, Maj, harmin, natmin } ScaleType;
 typedef enum { A, As, Ab, B, Bs, Bb, C, Cs, Cb,
             D, Ds, Db, E, Es, Eb, F, Fs, Fb, G, Gs, Gb} noteType;
 int pentaScale[6] = {0, 2, 4, 7, 9, 12};
 int majScale[8] = {0, 2, 4, 5, 7, 9, 11, 12};
-    
+int harminScale[8] = {0, 2, 3, 5, 7, 8, 11, 12};
+int natminScale[8] = {0, 2, 3, 5, 7, 8, 10, 12};
+int blueScale[7] = {0, 3, 5, 6, 7, 10, 12};
+
 
 @interface MUS147View : UIView
 

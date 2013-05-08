@@ -114,7 +114,7 @@ extern MUS147AQPlayer* aqp;
  
 
 /* fail scale generator
- * types: penta, blue, Maj, harmin, melmin, natmin
+ * types: penta, blue, Maj, harmin, natmin
  */
 -(int)makeScale:(char)startingNote withScale:(ScaleType)scaleType withLength:(int)scaleLength
 {
