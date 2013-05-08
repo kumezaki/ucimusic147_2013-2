@@ -21,8 +21,9 @@
         // assign value of sinusoid at phase position to buffer element
 		buffer[i] += amp * sin(normPhase * 2 * M_PI);
         
-        // dummy sawtooth generator
-        for (UInt32 j = 2; j < 10; j++)
+        // adding harmonics for sawtooth.
+        // should use low pass with -6b (1/2 amplitude) per octave
+        for (UInt32 j = 2; j < 5; j++)
             buffer[i] += amp/j * sin(normPhase * 2 * M_PI * j);
         
         // advance the phase position
