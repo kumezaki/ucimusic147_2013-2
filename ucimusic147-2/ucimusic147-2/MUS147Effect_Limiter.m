@@ -14,7 +14,7 @@
 {
     self = [super init];
     
-    max_amp = 0.6;
+    max_amp = 0.6; // how to set limiter thershold?
     
     return self;
 }
@@ -27,7 +27,6 @@
             buffer[i] = max_amp;
         if (buffer[i] < -max_amp)
             buffer[i] = -max_amp;
-        
     }
 }
 
