@@ -11,6 +11,9 @@
 
 #import "MUS147Voice.h"
 
+@class MUS147Effect_Delay;
+@class MUS147Effect_Limiter;
+
 // number of buffers used by system
 #define kNumBuffers     3
 
@@ -27,6 +30,9 @@
 	AudioStreamBasicDescription	dataFormat;
     
     MUS147Voice* voice[kNumVoices];
+    
+    MUS147Effect_Delay* effectDelay;
+    MUS147Effect_Limiter* effectLimiter;
 }
 
 -(void)setup;

@@ -40,7 +40,7 @@ extern MUS147AQPlayer* aqp;
         Float64 y = pt.y/self.bounds.size.height;
         
         // demo
-        int section = (int)(x * 13); // 13 now to cover a full octave
+        int section = (int)(x * 26); // sectionsq
         int noteNumber;
         if (y < .5) {
             // top half is pentatonic scale
@@ -52,7 +52,7 @@ extern MUS147AQPlayer* aqp;
             noteNumber = (int)(section/8)*12 + majScale[section%8];
         }
         
-        [aqp getVoice:1].freq = [self freqOf:(noteNumber + [self noteNumberOf:A octave:3]) ];
+        [aqp getVoice:1].freq = [self freqOf:(noteNumber + [self noteNumberOf:A octave:2]) ];
         [aqp getVoice:1].amp = 1. - y;
     }
 }
@@ -76,6 +76,7 @@ extern MUS147AQPlayer* aqp;
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self doTouches:touches withEvent:event];
+    [aqp getVoice:1].amp = 0.;
 }
 
 
