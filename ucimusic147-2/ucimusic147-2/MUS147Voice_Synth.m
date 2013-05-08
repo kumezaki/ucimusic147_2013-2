@@ -23,7 +23,7 @@
         
         // dummy sawtooth generator
         for (UInt32 j = 2; j < 10; j++)
-            buffer[i] += amp/j * sin(normPhose * 2 * M_PI * j);
+            buffer[i] += amp/j * sin(normPhase * 2 * M_PI * j);
         
         // advance the phase position
 		normPhase += deltaNormPhase;
