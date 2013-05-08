@@ -29,6 +29,13 @@ extern MUS147AQPlayer* aqp;
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+
+
+
+/* abandoned methods
 -(IBAction)setFreq0:(id)sender
 {
 //    [aqp getVoice:0].freq = freq0Slider.value * 1000.;
@@ -50,5 +57,6 @@ extern MUS147AQPlayer* aqp;
 {
     [aqp getVoice:1].amp = amp1Slider.value;
 }
+*/
 
 @end
