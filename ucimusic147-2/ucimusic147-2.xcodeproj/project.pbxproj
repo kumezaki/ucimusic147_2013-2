@@ -314,8 +314,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ucimusic147-2/ucimusic147-2-Prefix.pch";
 				INFOPLIST_FILE = "ucimusic147-2/ucimusic147-2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -326,8 +327,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ucimusic147-2/ucimusic147-2-Prefix.pch";
 				INFOPLIST_FILE = "ucimusic147-2/ucimusic147-2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
