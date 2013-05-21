@@ -28,6 +28,7 @@
 		2C17CF38173A36DA0092A4D3 /* MUS147Effect.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17CF37173A36DA0092A4D3 /* MUS147Effect.m */; };
 		2C17CF3B173A42800092A4D3 /* MUS147Effect_Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17CF3A173A42800092A4D3 /* MUS147Effect_Delay.m */; };
 		2C17CF3E173A42900092A4D3 /* MUS147Effect_Limiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17CF3D173A42900092A4D3 /* MUS147Effect_Limiter.m */; };
+		2C1AF44D174B3C4A00C4C6FD /* MyScale.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C1AF44C174B3C4A00C4C6FD /* MyScale.c */; };
 		43E500C81749F0E300DDF329 /* MUS147ViewControllerSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E500C71749F0E300DDF329 /* MUS147ViewControllerSub.m */; };
 		43E500CC1749F54800DDF329 /* MUS147ViewControllerSub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E500CB1749F54800DDF329 /* MUS147ViewControllerSub.xib */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,8 @@
 		2C17CF3A173A42800092A4D3 /* MUS147Effect_Delay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147Effect_Delay.m; sourceTree = "<group>"; };
 		2C17CF3C173A42900092A4D3 /* MUS147Effect_Limiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147Effect_Limiter.h; sourceTree = "<group>"; };
 		2C17CF3D173A42900092A4D3 /* MUS147Effect_Limiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147Effect_Limiter.m; sourceTree = "<group>"; };
+		2C1AF44B174B3C2F00C4C6FD /* MyScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScale.h; sourceTree = "<group>"; };
+		2C1AF44C174B3C4A00C4C6FD /* MyScale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyScale.c; sourceTree = "<group>"; };
 		43E500C61749F0E300DDF329 /* MUS147ViewControllerSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub.h; sourceTree = "<group>"; };
 		43E500C71749F0E300DDF329 /* MUS147ViewControllerSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147ViewControllerSub.m; sourceTree = "<group>"; };
 		43E500CB1749F54800DDF329 /* MUS147ViewControllerSub.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewControllerSub.xib; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 		21A4B844172C280700E1FACA /* ucimusic147-2 */ = {
 			isa = PBXGroup;
 			children = (
+				2C1AF44B174B3C2F00C4C6FD /* MyScale.h */,
+				2C1AF44C174B3C4A00C4C6FD /* MyScale.c */,
 				21A4B84D172C280700E1FACA /* MUS147AppDelegate.h */,
 				21A4B84E172C280700E1FACA /* MUS147AppDelegate.m */,
 				219D6B2D1732368F008C11A8 /* MUS147AQPlayer.h */,
@@ -243,6 +248,7 @@
 				2C17CF3B173A42800092A4D3 /* MUS147Effect_Delay.m in Sources */,
 				2C17CF3E173A42900092A4D3 /* MUS147Effect_Limiter.m in Sources */,
 				43E500C81749F0E300DDF329 /* MUS147ViewControllerSub.m in Sources */,
+				2C1AF44D174B3C4A00C4C6FD /* MyScale.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
