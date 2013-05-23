@@ -42,6 +42,6 @@
 
 -(MUS147Voice*)getVoice:(UInt8)pos;
 
--(void)fillAudioBuffer:(Float64*)buffer:(UInt32)num_samples;
+-(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
 
 @end

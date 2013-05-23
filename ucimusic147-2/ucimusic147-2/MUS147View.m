@@ -51,10 +51,10 @@ extern MUS147AQPlayer* aqp;
             y += .5;
         } else {
             // bottom half is major scale
-            noteNumber = (int)(section/8)*12 + majScale[section%8];
+            noteNumber = (int)(section/7)*12 + blueScale[section%7];
         }
         
-        [aqp getVoice:1].freq = freqOf(noteNumber + noteNumberOf(A,2));
+        [aqp getVoice:1].freq = freqOf(noteNumber + noteNumberOf(Eb,2));
         [aqp getVoice:1].amp = 1. - y;
     }
 }

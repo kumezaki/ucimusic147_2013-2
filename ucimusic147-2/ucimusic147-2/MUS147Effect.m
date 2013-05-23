@@ -12,7 +12,7 @@
 
 
 
--(void)processAudioBuffer:(Float64*)buffer:(UInt32)num_samples
+-(void)processAudioBuffer:(Float64*)buffer :(UInt32)num_samples
 {
     // to be implemented in subclasses
 }

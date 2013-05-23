@@ -10,7 +10,7 @@
 
 @implementation MUS147Voice_Synth
 
--(void)fillAudioBuffer:(Float64*)buffer:(UInt32)num_samples
+-(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples
 {
     // compute normalized angular frequency
     Float64 deltaNormPhase = freq / 22050.;
