@@ -8,8 +8,8 @@
 
 #import "MUS147ViewController.h"
 
-#import "MUS147AQPlayer.h"
-extern MUS147AQPlayer* aqp;
+#import "MUS147ViewControllerSub.h"
+
 
 @interface MUS147ViewController ()
 
@@ -31,6 +31,13 @@ extern MUS147AQPlayer* aqp;
 
 
 
+- (IBAction)changeView:(id)sender
+{
+	MUS147ViewControllerSub *subview = [[[MUS147ViewControllerSub alloc] initWithNibName:nil bundle:nil] autorelease];
+            // you can change flip horizontal to many different other transition styles.
+                subview.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                [self presentModalViewController:subview animated:YES];
+}
 
 
 

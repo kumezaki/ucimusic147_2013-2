@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MUS147ViewController : UIViewController {
+    
+    IBOutlet UIButton* settingButton;
 
     /* abandoned sliders
     IBOutlet UISlider* freq0Slider;
@@ -17,6 +19,8 @@
     IBOutlet UISlider* amp1Slider;
      */
 }
+
+-(IBAction)changeView:(id)sender;
 
 /* abandoned methods
 -(IBAction)setFreq0:(id)sender;

@@ -29,9 +29,9 @@
 		2C17CF3B173A42800092A4D3 /* MUS147Effect_Delay.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17CF3A173A42800092A4D3 /* MUS147Effect_Delay.m */; };
 		2C17CF3E173A42900092A4D3 /* MUS147Effect_Limiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C17CF3D173A42900092A4D3 /* MUS147Effect_Limiter.m */; };
 		2C1AF44D174B3C4A00C4C6FD /* MyScale.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C1AF44C174B3C4A00C4C6FD /* MyScale.c */; };
+		43A1C37E175C171E00F40B2C /* MUS147ViewControllerSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A1C37C175C171E00F40B2C /* MUS147ViewControllerSub.m */; };
+		43A1C37F175C171E00F40B2C /* MUS147ViewControllerSub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43A1C37D175C171E00F40B2C /* MUS147ViewControllerSub.xib */; };
 		43CFBC411756CE0E00E751E5 /* MUS147Envelope.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CFBC401756CE0E00E751E5 /* MUS147Envelope.m */; };
-		43E500C81749F0E300DDF329 /* MUS147ViewControllerSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E500C71749F0E300DDF329 /* MUS147ViewControllerSub.m */; };
-		43E500CC1749F54800DDF329 /* MUS147ViewControllerSub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43E500CB1749F54800DDF329 /* MUS147ViewControllerSub.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,11 +71,11 @@
 		2C17CF3D173A42900092A4D3 /* MUS147Effect_Limiter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147Effect_Limiter.m; sourceTree = "<group>"; };
 		2C1AF44B174B3C2F00C4C6FD /* MyScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScale.h; sourceTree = "<group>"; };
 		2C1AF44C174B3C4A00C4C6FD /* MyScale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyScale.c; sourceTree = "<group>"; };
+		43A1C37B175C171E00F40B2C /* MUS147ViewControllerSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub.h; sourceTree = "<group>"; };
+		43A1C37C175C171E00F40B2C /* MUS147ViewControllerSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147ViewControllerSub.m; sourceTree = "<group>"; };
+		43A1C37D175C171E00F40B2C /* MUS147ViewControllerSub.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewControllerSub.xib; sourceTree = "<group>"; };
 		43CFBC3F1756CE0E00E751E5 /* MUS147Envelope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147Envelope.h; sourceTree = "<group>"; };
 		43CFBC401756CE0E00E751E5 /* MUS147Envelope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147Envelope.m; sourceTree = "<group>"; };
-		43E500C61749F0E300DDF329 /* MUS147ViewControllerSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub.h; sourceTree = "<group>"; };
-		43E500C71749F0E300DDF329 /* MUS147ViewControllerSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147ViewControllerSub.m; sourceTree = "<group>"; };
-		43E500CB1749F54800DDF329 /* MUS147ViewControllerSub.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewControllerSub.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,9 +143,9 @@
 				21A4B856172C280700E1FACA /* MUS147ViewController.h */,
 				21A4B857172C280700E1FACA /* MUS147ViewController.m */,
 				21A4B859172C280700E1FACA /* MUS147ViewController.xib */,
-				43E500C61749F0E300DDF329 /* MUS147ViewControllerSub.h */,
-				43E500C71749F0E300DDF329 /* MUS147ViewControllerSub.m */,
-				43E500CB1749F54800DDF329 /* MUS147ViewControllerSub.xib */,
+				43A1C37B175C171E00F40B2C /* MUS147ViewControllerSub.h */,
+				43A1C37C175C171E00F40B2C /* MUS147ViewControllerSub.m */,
+				43A1C37D175C171E00F40B2C /* MUS147ViewControllerSub.xib */,
 				219D6B351732368F008C11A8 /* MUS147Voice.h */,
 				219D6B361732368F008C11A8 /* MUS147Voice.m */,
 				219D6B311732368F008C11A8 /* MUS147Voice_Sample.h */,
@@ -230,7 +230,7 @@
 				21A4B855172C280700E1FACA /* Default-568h@2x.png in Resources */,
 				21A4B85B172C280700E1FACA /* MUS147ViewController.xib in Resources */,
 				219D6B3D1732368F008C11A8 /* Music147.aif in Resources */,
-				43E500CC1749F54800DDF329 /* MUS147ViewControllerSub.xib in Resources */,
+				43A1C37F175C171E00F40B2C /* MUS147ViewControllerSub.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,9 +252,9 @@
 				2C17CF38173A36DA0092A4D3 /* MUS147Effect.m in Sources */,
 				2C17CF3B173A42800092A4D3 /* MUS147Effect_Delay.m in Sources */,
 				2C17CF3E173A42900092A4D3 /* MUS147Effect_Limiter.m in Sources */,
-				43E500C81749F0E300DDF329 /* MUS147ViewControllerSub.m in Sources */,
 				2C1AF44D174B3C4A00C4C6FD /* MyScale.c in Sources */,
 				43CFBC411756CE0E00E751E5 /* MUS147Envelope.m in Sources */,
+				43A1C37E175C171E00F40B2C /* MUS147ViewControllerSub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +286,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -314,7 +314,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

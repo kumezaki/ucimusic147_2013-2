@@ -16,7 +16,7 @@ extern int pentaScale[6];
 extern int majScale[8];
 extern int harminScale[8];
 extern int natminScale[8];
-extern int blueScale[7];
+extern int blueScale[8];
 
 extern float freqOf(int noteNumber);
 extern int noteNumberOf(noteType noteName, int octave);
