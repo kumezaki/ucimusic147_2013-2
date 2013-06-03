@@ -46,6 +46,8 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 
 @implementation MUS147AQPlayer
 
+@synthesize synthVoiceType;
+
 - (void)dealloc {
 
 	[self stop];

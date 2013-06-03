@@ -1,25 +1,20 @@
 //
-//  MUS147ViewControllerSub.m
+//  MUS147ViewControllerSub2.m
 //  ucimusic147-2
 //
 //  Created by Yurika Mulase on 6/2/13.
 //  Copyright (c) 2013 UCI Music 147. All rights reserved.
 //
 
-#import "MUS147ViewControllerSub.h"
-
-#import "MUS147ViewController.h"
-
+#import "MUS147ViewControllerSub2.h"
 #import "MUS147AQPlayer.h"
 extern MUS147AQPlayer* aqp;
 
-#import "MUS147Effect_Delay.h"
-
-@interface MUS147ViewControllerSub ()
+@interface MUS147ViewControllerSub2 ()
 
 @end
 
-@implementation MUS147ViewControllerSub
+@implementation MUS147ViewControllerSub2
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,13 +37,16 @@ extern MUS147AQPlayer* aqp;
     // Dispose of any resources that can be recreated.
 }
 
-
-
+-(IBAction)seqWave:(id)sender
+{
+    aqp.synthVoiceType = waveSegmentedControl.selectedSegmentIndex;
+}
 
 //button action to go back
-- (IBAction)goBack
+- (IBAction)goBack2
 {
     [self dismissModalViewControllerAnimated:YES];
 }
+
 
 @end

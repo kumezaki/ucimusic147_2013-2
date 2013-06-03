@@ -20,6 +20,7 @@
 // number of possible voices
 #define kNumVoices      2
 
+
 // sample rate
 #define kSR				22050.
 
@@ -35,12 +36,16 @@
     MUS147Effect_Limiter* effectLimiter;
 }
 
+@property (nonatomic,readwrite) UInt8 synthVoiceType;
+
+
 -(void)setup;
 
 -(OSStatus)start;
 -(OSStatus)stop;
 
 -(MUS147Voice*)getVoice:(UInt8)pos;
+-(MUS147Voice*)getSynthVoice;
 
 -(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
 

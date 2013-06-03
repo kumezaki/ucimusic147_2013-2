@@ -11,8 +11,23 @@
 @interface MUS147ViewControllerSub : MUS147ViewController
 {
     IBOutlet UIButton* doneButton;
+    IBOutlet UISlider* reverbSlider;
+    IBOutlet UISlider* delaySlider;
+    IBOutlet UIPickerView* scale0Picker;
+    IBOutlet UIPickerView* scale1Picker;
+    
 }
 
+-(IBAction)setReverb:(id)sender;
+-(IBAction)setDelay:(id)sender;
+
+-(IBAction)setScale0:(id)sender;
+-(IBAction)setScale1:(id)sender;
+
+
+//done button
 -(IBAction)goBack;
+
+
 
 @end

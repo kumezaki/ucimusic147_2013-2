@@ -11,6 +11,7 @@
 @interface MUS147ViewController : UIViewController {
     
     IBOutlet UIButton* settingButton;
+    IBOutlet UIButton* setWaveButton;
 
     /* abandoned sliders
     IBOutlet UISlider* freq0Slider;
@@ -21,6 +22,7 @@
 }
 
 -(IBAction)changeView:(id)sender;
+-(IBAction)changeView2:(id)sender;
 
 /* abandoned methods
 -(IBAction)setFreq0:(id)sender;
