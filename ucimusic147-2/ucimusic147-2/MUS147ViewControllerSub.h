@@ -8,7 +8,7 @@
 
 #import "MUS147ViewController.h"
 
-@interface MUS147ViewControllerSub : MUS147ViewController
+@interface MUS147ViewControllerSub : MUS147ViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 {
     IBOutlet UIButton* doneButton;
     IBOutlet UISlider* delaySlider;
@@ -17,6 +17,8 @@
     IBOutlet UIPickerView* scale1Picker;
     
 }
+
+@property (nonatomic, strong) NSArray *pickerContent;
 
 -(IBAction)setDelay:(id)sender;
 -(IBAction)setLimiter:(id)sender;
