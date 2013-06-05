@@ -8,7 +8,8 @@
 
 #import "MUS147Effect.h"
 
-@interface MUS147Effect_Limiter : MUS147Effect {
+@interface MUS147Effect_Limiter : MUS147Effect
+{
     Float32 max_amp;
 }
 

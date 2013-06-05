@@ -10,6 +10,8 @@
 
 #import "MUS147AQPlayer.h"
 
+#define kSR			22050.
+
 // delay audio buffer
 #define kMaxDelayTime 5.0
 #define kMaxDelaySamples (UInt32)(kSR * kMaxDelayTime)
