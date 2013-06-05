@@ -20,6 +20,10 @@
 // number of possible voices
 #define kNumVoices      2
 
+//number of possible synth voices
+#define kNumVoices_Synth 2
+
+#define kNumEffects     3
 
 // sample rate
 #define kSR				22050.
@@ -31,6 +35,9 @@
 	AudioStreamBasicDescription	dataFormat;
     
     MUS147Voice* voice[kNumVoices];
+
+    MUS147Voice* voice_synth[kNumVoices_Synth];
+    MUS147Voice* voice_synth_blitsaw[kNumVoices_Synth];
     
     MUS147Effect_Delay* effectDelay;
     MUS147Effect_Limiter* effectLimiter;

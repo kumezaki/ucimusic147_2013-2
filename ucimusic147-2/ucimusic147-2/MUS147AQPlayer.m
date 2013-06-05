@@ -10,6 +10,7 @@
 
 #import "MUS147Voice_Sample.h"
 #import "MUS147Voice_Synth.h"
+#import "MUS147Voice_BLITSaw.h"
 
 #import "MUS147Effect_Delay.h"
 #import "MUS147Effect_Limiter.h"
@@ -59,9 +60,25 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     
 	aqp = self;
     
+    for (UInt8 i = 0; i < kNumVoices_Synth; i++)
+    {
+        voice_synth[i] = [[MUS147Voice_Synth alloc] init];
+        voice_synth_blitsaw[i] = [[MUS147Voice_BLITSaw alloc] init];
+    }
+    
     for (UInt8 i = 0; i < kNumVoices; i++)
     {
-        voice[i] = [[MUS147Voice_Synth alloc] init];
+        switch (i)
+        {
+            case 0:
+                voice[i] = voice_synth[0];
+                break;
+            case 1:
+                voice[i] = voice_synth_blitsaw[i-2];
+                break;
+            default:
+                break;
+        }
     }
     
     effectDelay = [[MUS147Effect_Delay alloc] init];
@@ -120,6 +137,46 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     result = AudioQueueStop(queue, true);
 	
 	return result;
+}
+
+-(void)setSynthVoiceType:(UInt8)type
+{
+    synthVoiceType = type;
+    
+    switch (synthVoiceType)
+    {
+        case 0:
+            for (UInt8 i = 0; i < kNumVoices_Synth; i++)
+                voice[i+2] = voice_synth[i];
+            break;
+        case 1:
+            for (UInt8 i = 0; i < kNumVoices_Synth; i++)
+                voice[i+2] = voice_synth_blitsaw[i];
+            break;
+    }
+}
+
+-(MUS147Voice*)getSynthVoice
+{
+    MUS147Voice* v = nil;
+    
+    switch (synthVoiceType)
+    {
+        case 0:
+            for (UInt8 i = 0; i < kNumVoices_Synth; i++)
+                if (![voice_synth[i] isOn])
+                    v = voice_synth[i];
+            break;
+        case 1:
+            for (UInt8 i = 0; i < kNumVoices_Synth; i++)
+                if (![voice_synth_blitsaw[i] isOn])
+                    v = voice_synth_blitsaw[i];
+            break;
+        default:
+            break;
+    }
+    
+    return v;
 }
 
 -(MUS147Voice*)getVoice:(UInt8)pos
