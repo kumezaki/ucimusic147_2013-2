@@ -15,6 +15,8 @@ extern MUS147AQPlayer* aqp;
 
 #import "MUS147Effect_Delay.h"
 
+#import "MUS147Voice.h"
+
 @interface MUS147ViewControllerSub ()
 
 @end
@@ -41,12 +43,6 @@ extern MUS147AQPlayer* aqp;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(IBAction)setLimiter:(id)sender
-{
-    [aqp getVoice:0].limiter = limiterSlider.value;
-}
-
 
 
 //button action to go back

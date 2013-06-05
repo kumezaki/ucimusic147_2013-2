@@ -13,6 +13,8 @@ extern MUS147AQPlayer* aqp;
 
 #import "MyScale.h"
 
+#import "MUS147Voice.h"
+
 @implementation MUS147View
 
 - (id)initWithFrame:(CGRect)frame

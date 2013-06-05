@@ -9,8 +9,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <Foundation/Foundation.h>
 
-#import "MUS147Voice.h"
-
+@class MUS147Voice;
 @class MUS147Effect_Delay;
 @class MUS147Effect_Limiter;
 
