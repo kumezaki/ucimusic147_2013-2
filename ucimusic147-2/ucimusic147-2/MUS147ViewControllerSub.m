@@ -75,7 +75,7 @@ extern MUS147AQPlayer* aqp;
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
+    //NOT DONE I DON'T KNOW WHAT TO PUT HERE ALSDFKJSALKDJF T_T -YURIKA
     
     switch (row) {
         case 0:
