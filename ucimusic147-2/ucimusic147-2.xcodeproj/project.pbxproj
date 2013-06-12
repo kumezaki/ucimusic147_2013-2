@@ -118,7 +118,7 @@
 		2CBBE64A1769307A000AB81F /* MUS147ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUS147ViewController.m; path = modified/MUS147ViewController.m; sourceTree = "<group>"; };
 		2CBBE64B1769307A000AB81F /* MyScale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = MyScale.c; path = modified/MyScale.c; sourceTree = "<group>"; };
 		2CBBE64C1769307A000AB81F /* MyScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyScale.h; path = modified/MyScale.h; sourceTree = "<group>"; };
-		2CCE369F1769364F00063C88 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "ucimusic147-2/main.m"; sourceTree = "<group>"; };
+		2CCE369F1769364F00063C88 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2CCE36A2176938A000063C88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MUS147ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +141,6 @@
 		21A4B82F172C280700E1FACA = {
 			isa = PBXGroup;
 			children = (
-				2CCE369F1769364F00063C88 /* main.m */,
 				21A4B844172C280700E1FACA /* ucimusic147-2 */,
 				21A4B83D172C280700E1FACA /* Frameworks */,
 				21A4B83B172C280700E1FACA /* Products */,
@@ -233,6 +232,7 @@
 		21A4B845172C280700E1FACA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2CCE369F1769364F00063C88 /* main.m */,
 				2CBBE63C17693056000AB81F /* Music147_2013-Info.plist */,
 				2CBBE63D17693056000AB81F /* Music147_2013-Prefix.pch */,
 				219D6B371732368F008C11A8 /* Music147.aif */,
