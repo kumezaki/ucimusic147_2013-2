@@ -2,18 +2,19 @@
 //  MUS147View.m
 //  Music147_2013
 //
-//  Created by Lab User on 5/1/13.
+//  Created by Kojiro Umezaki on 5/3/13.
 //  Copyright (c) 2013 Kojiro Umezaki. All rights reserved.
 //
 
 #import "MUS147View.h"
 
+#import "MUS147Event_Touch.h"
+
 #import "MUS147AQPlayer.h"
-extern MUS147AQPlayer* aqp;
 
 #import "MyScale.h"
 
-#import "MUS147Voice.h"
+extern MUS147AQPlayer* aqp;
 
 @implementation MUS147View
 
@@ -26,16 +27,39 @@ extern MUS147AQPlayer* aqp;
     return self;
 }
 
-/*
+-(void)awakeFromNib
+{
+    [[UIAccelerometer sharedAccelerometer] setDelegate:self];
+}
+
+/* unused
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-}
-*/
+    for (UInt8 i = 0; i < kMaxNumTouches; i++)
+    {
+        if (touch[i] == nil) continue;
+        
+        // Drawing code
+        UIColor *uciBlueColor = [UIColor colorWithRed:0./255. green:34./255. blue:68./255. alpha:1.];
+        UIColor *uciGoldColor = [UIColor colorWithRed:255./255. green:222./255. blue:108./255. alpha:1.];
 
--(void)doTouches:(NSSet *)touches withEvent:(UIEvent *)event
+        CGPoint pt = [touch[i] locationInView:self];
+
+        Float64 w = 30.;
+        Float64 h = w;
+
+        [uciGoldColor set];
+        UIRectFill(CGRectMake(pt.x-w/2, pt.y-h/2, w, h));
+
+        [uciBlueColor set];
+        UIRectFrame(CGRectMake(pt.x-w/2, pt.y-h/2, w, h));
+    }
+}
+ */
+
+-(void)doTouchesOn:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch* t in touches)
     {
@@ -46,41 +70,131 @@ extern MUS147AQPlayer* aqp;
         // demo
         int section = (int)(x * 26); // sections
         int noteNumber;
-        if (y < .5) {
-            // top half is pentatonic scale
-            noteNumber = (int)(section/6)*12 + pentaScale[section%6];
-            // balance amplitude for top half
-            y += .5;
-        } else {
-            // bottom half is major scale
-            noteNumber = (int)(section/7)*12 + blueScale[section%7];
-        }
+        // top half is pentatonic scale
+        noteNumber = (int)(section/6)*12 + pentaScale[section%6];
+        // balance amplitude for top half
+        y += .5;
         
         [aqp getVoice:1].freq = freqOf(noteNumber + noteNumberOf(Eb,2));
         [aqp getVoice:1].amp = 1. - y;
     }
+    /* ko's
+    for (UITouch* t in touches)
+    {
+        SInt8 t_pos = [self getTouchPos:t];
+        if (t_pos < 0)
+        {
+            t_pos = [self addTouch:t];
+            if (t_pos < 0)
+            {
+                NSLog(@"could not add touch");
+                continue;
+            }
+            else
+                voice[t_pos] = [aqp getSynthVoiceWithPos:t_pos];
+        }
+
+        MUS147Voice* v = voice[t_pos];
+
+        CGPoint pt = [t locationInView:self];
+        Float64 x = pt.x/self.bounds.size.width;
+        Float64 y = pt.y/self.bounds.size.height;
+        
+        if (v != nil)
+        {
+            v.amp = [MUS147Event_Touch yToAmp:y];
+            v.freq = [MUS147Event_Touch xToFreq:x];
+            if (!v.isOn)
+                [v on];
+        }
+        
+        if (aqp.sequencer.recording)
+            [aqp.sequencer addTouchEvent:x :y :YES :t_pos];
+    }
+
+    [self setNeedsDisplay];
+     */
+}
+
+-(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for (UITouch* t in touches)
+    {
+        SInt8 t_pos = [self removeTouch:t];
+        if (t_pos < 0)
+        {
+            NSLog(@"could not remove touch");
+            continue;
+        }
+
+        MUS147Voice* v = voice[t_pos];
+
+        if (v != nil)
+        {
+            if (v.isOn)
+                [v off];
+        }
+        
+        if (aqp.sequencer.recording)
+            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos];
+    }
+    
+    [self setNeedsDisplay];
+}
+
+-(SInt8)getTouchPos:(UITouch*)t
+{
+    for (UInt8 i = 0; i < kMaxNumTouches; i++)
+            if (t == touch[i]) return i;
+    return -1;
+}
+
+-(SInt8)addTouch:(UITouch*)t
+{
+    for (UInt8 i = 0; i < kMaxNumTouches; i++)
+        if (touch[i] == nil)
+        {
+            touch[i] = t;
+            return i;
+        }
+    return -1;
+}
+
+-(SInt8)removeTouch:(UITouch*)t
+{
+    for (UInt8 i = 0; i < kMaxNumTouches; i++)
+        if (t == touch[i])
+        {
+            touch[i]  = nil;
+            return i;
+        }
+    return -1;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self doTouches:touches withEvent:event];
+    [self doTouchesOn:touches withEvent:event];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self doTouches:touches withEvent:event];
+    [self doTouchesOn:touches withEvent:event];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self doTouches:touches withEvent:event];
-    [aqp getVoice:1].amp = 0.;
+    [self doTouchesOff:touches withEvent:event];
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self doTouches:touches withEvent:event];
-    [aqp getVoice:1].amp = 0.;
+    [self doTouchesOff:touches withEvent:event];
+}
+
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    // comment the NSLog when running on iOS (for Simulator leave it uncommented)
+//    NSLog(@"%f %f %f",acceleration.x,acceleration.y,acceleration.z);
 }
 
 @end

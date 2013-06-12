@@ -1,16 +1,16 @@
 //
 //  MUS147Effect_Delay.m
-//  ucimusic147-2
+//  Music147_2013
 //
-//  Created by Eddie Huang on 5/8/13.
-//  Copyright (c) 2013 UCI Music 147. All rights reserved.
+//  Created by Kojiro Umezaki on 5/4/13.
+//  Copyright (c) 2013 Kojiro Umezaki. All rights reserved.
 //
 
 #import "MUS147Effect_Delay.h"
 
 @implementation MUS147Effect_Delay
 
--(id) init
+-(id)init
 {
     self = [super init];
     
@@ -27,20 +27,17 @@
 
 -(void)processAudioBuffer:(Float64*)buffer :(UInt32)num_samples
 {
-    // read block first for feedback delay
     for (UInt32 i = 0; i < num_samples; i++)
-    buffer[i] += delayAmp * delayAudioBuffer[(readPos+i)%kMaxDelaySamples];
-
+        buffer[i] += delayAmp * delayAudioBuffer[(readPos+i)%kMaxDelaySamples];
+    
     readPos += num_samples;
     readPos %= kMaxDelaySamples;
-    //------------
-
-    // write block
+    
     for (UInt32 i = 0; i < num_samples; i++)
-    delayAudioBuffer[(writePos+i)%kMaxDelaySamples] = buffer[i];
-
+        delayAudioBuffer[(writePos+i)%kMaxDelaySamples] = buffer[i];
+    
     writePos += num_samples;
     writePos %= kMaxDelaySamples;
-    //--------
 }
+
 @end

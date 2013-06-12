@@ -16,7 +16,7 @@
 
 @synthesize env;
 
--(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples
+-(void)addToAudioBuffer:(Float64*)buffer :(UInt32)num_samples
 {
     // does nothing
 }
@@ -26,8 +26,8 @@
     self = [super init];
     
     env = [[MUS147Envelope alloc] init];
-	env.attack = 0.50;
-	env.release = 1.50;
+	env.attack = 0.05;
+	env.release = 0.05;
     
     return self;
 }
@@ -46,4 +46,5 @@
 {
     [env off];
 }
+
 @end

@@ -8,12 +8,14 @@
 
 #import "MUS147AQPlayer.h"
 
-#import "MUS147Voice_Sample.h"
-#import "MUS147Voice_Synth.h"
-#import "MUS147Voice_BLITSaw.h"
-
+#import "MUS147Effect_BiQuad.h"
 #import "MUS147Effect_Delay.h"
 #import "MUS147Effect_Limiter.h"
+#import "MUS147Voice_Sample_SF.h"
+#import "MUS147Voice_Sample_Mem.h"
+#import "MUS147Voice_Synth.h"
+#import "MUS147Voice_BLIT.h"
+#import "MUS147Voice_BLITSaw.h"
 
 MUS147AQPlayer *aqp = nil;
 
@@ -31,7 +33,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     memset(buffer,0,sizeof(Float64)*numFrames);
 	
     // call AQPlayer fillAudioBuffer method to get a new block of samples
-	[aqp fillAudioBuffer:buffer:numFrames];
+	[aqp doAudioBuffer:buffer:numFrames];
 	
     // fill the outgoing buffer as SInt16 type samples
 	for (SInt32 i = 0; i < numFrames; i++)
@@ -43,47 +45,84 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     
 	// queue the updated AudioQueueBuffer
 	AudioQueueEnqueueBuffer(inAQ, inAQBuffer, 0, nil);
+    
+    @autoreleasepool {
+        [aqp reportElapsedFrames:numFrames];
+    }
 }
 
 @implementation MUS147AQPlayer
 
+@synthesize sequencer;
 @synthesize synthVoiceType;
 
-- (void)dealloc {
-
+-(void)dealloc
+{
 	[self stop];
 }
 
-- (id)init
+-(id)init
 {
     self = [super init];
     
 	aqp = self;
     
+    // first allocate pools of voices ...
+    voice_samp_mem[0] = [[MUS147Voice_Sample_Mem alloc] init];
+    voice_samp_sf[0] = [[MUS147Voice_Sample_SF alloc] init];
+
     for (UInt8 i = 0; i < kNumVoices_Synth; i++)
     {
-        voice_synth[i] = [[MUS147Voice_Synth alloc] init];
+        voice_synth_blit[i] = [[MUS147Voice_BLIT alloc] init];
         voice_synth_blitsaw[i] = [[MUS147Voice_BLITSaw alloc] init];
     }
-    
+
+    // ... then assign them to array of active voices
     for (UInt8 i = 0; i < kNumVoices; i++)
     {
         switch (i)
         {
             case 0:
-                voice[i] = voice_synth[0];
+                voice[i] = voice_samp_mem[0];
                 break;
             case 1:
-                voice[i] = voice_synth_blitsaw[i-2];
+                voice[i] = voice_samp_sf[0];
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                voice[i] = voice_synth_blit[i-2];
                 break;
             default:
                 break;
         }
     }
     
-    effectDelay = [[MUS147Effect_Delay alloc] init];
-    effectLimiter = [[MUS147Effect_Limiter alloc] init];
-	
+    for (UInt8 i = 0; i < kNumEffects; i++)
+    {
+        switch (i)
+        {
+            case 0:
+            {
+                MUS147Effect_BiQuad* bq = [[MUS147Effect_BiQuad alloc] init];
+                [bq biQuad_set:LPF:0.:5000.:kSR:1.0];
+                effect[i] = bq;
+                break;
+            }
+            case 1:
+                effect[i] = [[MUS147Effect_Delay alloc] init];
+                break;
+            case 2:
+                effect[i] = [[MUS147Effect_Limiter alloc] init];
+                break;
+            default:
+                break;
+        }
+    }
+    
+    sequencer = [[MUS147Sequencer alloc] init];
+    
 	[self start];
     
 	return self;
@@ -105,7 +144,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 	if (result != noErr)
 		NSLog(@"AudioQueueNewOutput %ld\n",result);
 	
-    for (SInt32 i = 0; i < kNumBuffers; i++)
+    for (SInt32 i = 0; i < kNumBuffers_Playback; i++)
 	{
 		result = AudioQueueAllocateBuffer(queue, 512, &buffers[i]);
 		if (result != noErr)
@@ -122,7 +161,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
         [self setup];
     
     // prime the queue with some data before starting
-    for (SInt32 i = 0; i < kNumBuffers; ++i)
+    for (SInt32 i = 0; i < kNumBuffers_Playback; ++i)
         MUS147AQBufferCallback(nil, queue, buffers[i]);
 	
     result = AudioQueueStart(queue, nil);
@@ -147,13 +186,18 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     {
         case 0:
             for (UInt8 i = 0; i < kNumVoices_Synth; i++)
-                voice[i+2] = voice_synth[i];
+                voice[i+2] = voice_synth_blit[i];
             break;
         case 1:
             for (UInt8 i = 0; i < kNumVoices_Synth; i++)
                 voice[i+2] = voice_synth_blitsaw[i];
             break;
     }
+}
+
+-(MUS147Voice*)getVoice:(UInt8)pos
+{
+    return voice[pos];
 }
 
 -(MUS147Voice*)getSynthVoice
@@ -164,8 +208,8 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     {
         case 0:
             for (UInt8 i = 0; i < kNumVoices_Synth; i++)
-                if (![voice_synth[i] isOn])
-                    v = voice_synth[i];
+                if (![voice_synth_blit[i] isOn])
+                    v = voice_synth_blit[i];
             break;
         case 1:
             for (UInt8 i = 0; i < kNumVoices_Synth; i++)
@@ -175,24 +219,59 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
         default:
             break;
     }
+
+    return v;
+}
+
+-(MUS147Voice*)getSynthVoiceWithPos:(UInt8)pos
+{
+    MUS147Voice* v = nil;
+    
+    switch (synthVoiceType)
+    {
+        case 0:
+            v = voice_synth_blit[pos];
+            break;
+        case 1:
+            v = voice_synth_blitsaw[pos];
+            break;
+        default:
+            break;
+    }
     
     return v;
 }
 
--(MUS147Voice*)getVoice:(UInt8)pos
+-(MUS147Voice*)getRecordVoice
 {
-    return voice[pos];
+    return voice[0];
 }
 
--(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples
+-(MUS147Effect_BiQuad*)getBiQuad
+{
+    return (MUS147Effect_BiQuad*)effect[0];
+}
+
+-(void)reportElapsedFrames:(UInt32)num_frames
+{
+    [sequencer advanceScoreTime:num_frames/kSR];
+
+//    NSLog(@"%f",num_frames/kSR);
+}
+
+-(void)doAudioBuffer:(Float64*)buffer :(UInt32)num_samples
 {
     for (UInt8 i = 0; i < kNumVoices; i++)
     {
-        [voice[i] fillAudioBuffer:buffer:num_samples];
+        if (voice[i] != nil)
+            [voice[i] addToAudioBuffer:buffer:num_samples];
     }
-
-    [effectDelay processAudioBuffer:buffer:num_samples];
-    [effectLimiter processAudioBuffer:buffer:num_samples];
+    
+    for (UInt8 i = 0; i < kNumEffects; i++)
+    {
+        if (effect[i] != nil)
+            [effect[i] processAudioBuffer:buffer:num_samples];
+    }
 }
 
 @end

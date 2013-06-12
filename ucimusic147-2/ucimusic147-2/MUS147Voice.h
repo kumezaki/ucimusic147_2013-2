@@ -10,8 +10,6 @@
 
 #import "MUS147Envelope.h"
 
-#import "MUS147Effect_Limiter.h"
-
 @interface MUS147Voice : NSObject {
 
     Float64 normPhase;
@@ -19,18 +17,17 @@
     Float64 amp;
     
     Float64 speed;
-    
+
     MUS147Envelope* env;
-    MUS147Effect_Limiter* limiter;
 }
 
 @property (readwrite) Float64 freq;
 @property (readwrite) Float64 amp;
 @property (readwrite) Float64 speed;
 
-@property (retain, nonatomic) MUS147Envelope* env;
+@property (retain,nonatomic) MUS147Envelope* env;
 
--(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
+-(void)addToAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
 
 -(BOOL)isOn;
 -(void)on;

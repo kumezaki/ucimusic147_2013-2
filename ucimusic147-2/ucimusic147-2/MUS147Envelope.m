@@ -1,14 +1,14 @@
 //
 //  MUS147Envelope.m
-//  ucimusic147-2
+//  Music147_2013
 //
-//  Created by Yurika Mulase on 5/29/13.
-//  Copyright (c) 2013 UCI Music 147. All rights reserved.
+//  Created by Kojiro Umezaki on 5/28/13.
+//  Copyright (c) 2013 Kojiro Umezaki. All rights reserved.
 //
 
 #import "MUS147Envelope.h"
 
-#define kSR			22050.
+#import "MUS147AQShared.h"
 
 @implementation MUS147Envelope
 
@@ -46,6 +46,5 @@
 {
 	delta = delta_release;
 }
-
 
 @end

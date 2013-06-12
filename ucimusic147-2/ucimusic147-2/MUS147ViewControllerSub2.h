@@ -11,7 +11,7 @@
 @interface MUS147ViewControllerSub2 : MUS147ViewController
 {
     IBOutlet UIButton* doneButton2;
-    IBOutlet UISegmentedControl* waveSegmentedControl;
+    //IBOutlet UISegmentedControl* waveSegmentedControl;
 
 }
 

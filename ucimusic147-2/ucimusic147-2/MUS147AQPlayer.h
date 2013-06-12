@@ -9,43 +9,49 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <Foundation/Foundation.h>
 
-@class MUS147Voice;
-@class MUS147Effect_Delay;
-@class MUS147Effect_Limiter;
+#import "MUS147AQShared.h"
+#import "MUS147Sequencer.h"
+#import "MUS147Voice.h"
 
-// number of buffers used by system
-#define kNumBuffers     3
+@class MUS147Effect;
+@class MUS147Effect_BiQuad;
 
-// number of possible voices
-#define kNumVoices      2
+// number of buffers used by AQ system for playback
+#define kNumBuffers_Playback     3
 
-//number of possible synth voices
-#define kNumVoices_Synth 2
+// number of possible playback voices
+#define kNumVoices          6
 
-#define kNumEffects     3
+// number of possible synth voices
+#define kNumVoices_Synth    4
 
-// sample rate
-#define kSR			22050.
+// number of possible effects
+#define kNumEffects         3
 
 @interface MUS147AQPlayer : NSObject {
 
 	AudioQueueRef				queue;
-	AudioQueueBufferRef			buffers[kNumBuffers];
+	AudioQueueBufferRef			buffers[kNumBuffers_Playback];
 	AudioStreamBasicDescription	dataFormat;
     
-    UInt8 synthVoiceType;
+    UInt8 synthVoiceType; // 0 for BLIT, 1 for BLITSaw
     
-    MUS147Voice* voice[kNumVoices];
-
-    MUS147Voice* voice_synth[kNumVoices_Synth];
+    // the following were added in preparation for supporting pools of voices
+    // for now, there is only one element in each array
+    MUS147Voice* voice_samp_mem[1];
+    MUS147Voice* voice_samp_sf[1];
+    MUS147Voice* voice_synth_blit[kNumVoices_Synth];
     MUS147Voice* voice_synth_blitsaw[kNumVoices_Synth];
+
+    MUS147Voice* voice[kNumVoices];
     
-    MUS147Effect_Delay* effectDelay;
-    MUS147Effect_Limiter* effectLimiter;
+    MUS147Effect* effect[kNumEffects];
+
+    MUS147Sequencer* sequencer;
 }
 
 @property (nonatomic,readwrite) UInt8 synthVoiceType;
-
+@property (readonly) MUS147Sequencer* sequencer;
 
 -(void)setup;
 
@@ -53,8 +59,16 @@
 -(OSStatus)stop;
 
 -(MUS147Voice*)getVoice:(UInt8)pos;
--(MUS147Voice*)getSynthVoice;
 
--(void)fillAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
+-(MUS147Voice*)getSynthVoice;
+-(MUS147Voice*)getSynthVoiceWithPos:(UInt8)pos;
+
+-(MUS147Voice*)getRecordVoice;
+
+-(MUS147Effect_BiQuad*)getBiQuad;
+
+-(void)reportElapsedFrames:(UInt32)num_frames;
+
+-(void)doAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
 
 @end

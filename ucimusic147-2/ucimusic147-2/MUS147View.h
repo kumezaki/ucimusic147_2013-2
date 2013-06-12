@@ -2,14 +2,27 @@
 //  MUS147View.h
 //  Music147_2013
 //
-//  Created by Lab User on 5/1/13.
+//  Created by Kojiro Umezaki on 5/3/13.
 //  Copyright (c) 2013 Kojiro Umezaki. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MUS147View : UIView
+#import "MUS147Voice.h"
 
--(void)doTouches:(NSSet *)touches withEvent:(UIEvent *)event;
+// the number of maximum, simultaneous touches
+#define kMaxNumTouches 4
+
+@interface MUS147View : UIView <UIAccelerometerDelegate> {
+    UITouch* touch[kMaxNumTouches];
+    MUS147Voice* voice[kMaxNumTouches];
+}
+
+-(void)doTouchesOn:(NSSet *)touches withEvent:(UIEvent *)event;
+-(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event;
+
+-(SInt8)getTouchPos:(UITouch*)t;
+-(SInt8)addTouch:(UITouch*)t;
+-(SInt8)removeTouch:(UITouch*)t;
 
 @end
