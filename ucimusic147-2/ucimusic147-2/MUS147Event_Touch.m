@@ -46,11 +46,8 @@ extern MUS147AQPlayer* aqp;
 
 +(Float64)xToFreq:(Float64)x
 {
-    return 2000. * x;
+    return x * 2000.;
 }
-/* I'm using noteNumber to generate frequency
- 440. * pow(2, ((float)noteNumber-69)/12);
- */
 
 +(Float64)yToAmp:(Float64)y
 {

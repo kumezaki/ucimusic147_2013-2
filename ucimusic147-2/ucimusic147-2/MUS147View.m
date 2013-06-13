@@ -82,7 +82,7 @@ extern MUS147AQPlayer* aqp;
         
         if (v != nil)
         {
-            v.amp = [MUS147Event_Touch yToAmp:(y+0.5)];
+            v.amp = [MUS147Event_Touch yToAmp:y];
             // float freq = [MUS147Event_Touch xToFreq:x];
             float freq = freqOf(noteNumber);
             NSLog(@"freq is %f", freq);
@@ -101,7 +101,7 @@ extern MUS147AQPlayer* aqp;
 
 -(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event
 {
-/*
+
  for (UITouch* t in touches)
     {
         SInt8 t_pos = [self removeTouch:t];
@@ -124,7 +124,7 @@ extern MUS147AQPlayer* aqp;
     }
     
     [self setNeedsDisplay];
- */
+ 
 }
 
 -(SInt8)getTouchPos:(UITouch*)t

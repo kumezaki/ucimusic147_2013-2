@@ -131,7 +131,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     sequencer = [[MUS147Sequencer alloc] init];
     
     currentKey = C;
-    currentScaleType = penta;
+    currentScaleType = blue;
     
 	[self start];
     
