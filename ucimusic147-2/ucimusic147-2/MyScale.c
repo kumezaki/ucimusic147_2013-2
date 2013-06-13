@@ -29,18 +29,18 @@ int noteNumberOf(NoteType noteName, int octave)
 {
     int note;
     switch (noteName) {
-        case (Bs): case (C): note = 24; break;
-        case (Cs): case (Db): note = 25; break;
+        case (C):  note = 24; break;
+        case (Cs):  note = 25; break;
         case (D): note = 26; break;
-        case (Ds): case (Eb): note = 27; break;
-        case (E):  case (Fb):note = 28; break;
-        case (Es): case (F): note = 29; break;
-        case (Fs): case (Gb): note = 30; break;
+        case (Ds):  note = 27; break;
+        case (E):  note = 28; break;
+        case (F):  note = 29; break;
+        case (Fs):  note = 30; break;
         case (G): note = 31; break;
-        case (Gs): case (Ab): note = 32; break;
+        case (Gs):  note = 32; break;
         case (A): note = 33; break;
-        case (As): case (Bb): note = 34; break;
-        case (B):  case (Cb): note = 35; break;
+        case (As):  note = 34; break;
+        case (B):   note = 35; break;
     }
     return note + 12 * (octave - 1);
 }

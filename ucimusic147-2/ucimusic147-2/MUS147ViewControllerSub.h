@@ -11,21 +11,21 @@
 @interface MUS147ViewControllerSub : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 {
     IBOutlet UIButton* doneButton;
-    IBOutlet UISlider* delaySlider;
-    IBOutlet UISlider* limiterSlider;
-    IBOutlet UIPickerView* scale0Picker;
-    IBOutlet UIPickerView* scale1Picker;
+
+    IBOutlet UIPickerView* scalePicker;
+    IBOutlet UIPickerView* keyPicker;
     
 }
 
-@property (nonatomic, strong) NSArray *pickerContent;
-
+@property (nonatomic, strong) NSArray *ScalepickerContent;
+@property (nonatomic, strong) NSArray *KeypickerContent;
+/*
 -(IBAction)setDelay:(id)sender;
 -(IBAction)setLimiter:(id)sender;
 
 -(IBAction)setScale0:(id)sender;
 -(IBAction)setScale1:(id)sender;
-
+*/
 
 //done button
 -(IBAction)goBack;

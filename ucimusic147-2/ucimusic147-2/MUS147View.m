@@ -118,13 +118,13 @@ extern MUS147AQPlayer* aqp;
             if (v.isOn)
                 [v off];
         }
-        
+        /*
         if (aqp.sequencer.recording)
-            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos];
+            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos]; */
     }
     
     [self setNeedsDisplay];
- 
+
 }
 
 -(SInt8)getTouchPos:(UITouch*)t

@@ -10,7 +10,6 @@
 
 #import "MUS147ViewControllerSub.h"
 
-#import "MUS147ViewControllerSub2.h"
 
 
 @interface MUS147ViewController ()
@@ -36,13 +35,6 @@
 	MUS147ViewControllerSub *subview = [[MUS147ViewControllerSub alloc] initWithNibName:nil bundle:nil] ;
                 subview.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
                 [self presentModalViewController:subview animated:YES];
-}
-
-- (IBAction)changeView2:(id)sender
-{
-	MUS147ViewControllerSub2 *subview = [[MUS147ViewControllerSub2 alloc] initWithNibName:nil bundle:nil];
-    subview.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:subview animated:YES];
 }
 
 

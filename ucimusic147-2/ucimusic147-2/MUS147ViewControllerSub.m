@@ -25,7 +25,8 @@ extern MUS147AQPlayer* aqp;
 
 @implementation MUS147ViewControllerSub
 
-@synthesize pickerContent;
+@synthesize ScalepickerContent;
+@synthesize KeypickerContent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,7 +48,7 @@ extern MUS147AQPlayer* aqp;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 -(IBAction)setDelay:(id)sender
 {
     [aqp setDelayTime:delaySlider.value];
@@ -66,62 +67,75 @@ extern MUS147AQPlayer* aqp;
 -(IBAction)setScale1:(id)sender
 {
     
-}
+}*/
 
 //picker content here
-- (NSArray *)pickerContent
+- (NSArray *)ScalepickerContent
 {
-    if(!pickerContent) {
-        pickerContent = [[NSArray alloc] initWithObjects:
+    
+    if(!ScalepickerContent) {
+        ScalepickerContent = [[NSArray alloc] initWithObjects:
                          @"Pentatonic", @"Major",
-                         @"Harmonic minor", @"Natural minor",
+                         @"Harmonic", @"Natural",
                          @"Blues", nil];
     }
-    return pickerContent;
+    return ScalepickerContent;
+}
+
+- (NSArray *)KeypickerContent
+{
+    if(!KeypickerContent) {
+        KeypickerContent = [[NSArray alloc] initWithObjects:
+                              @"C", @"C#/Db", @"D", @"D#/Eb",
+                              @"E", @"F", @"F#/Gb", @"G",
+                              @"G#/Ab", @"A", @"A#/Bb", @"B", nil];
+    }
+    return KeypickerContent;
 }
 #pragma mark – Picker Datasource:
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+   if([pickerView isEqual: scalePicker])
+    {
+       return 1;
+    }
+    if([pickerView isEqual: keyPicker])
+    {
+        return 1;
+    }
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.pickerContent.count;
+    if([pickerView isEqual: scalePicker])
+    {
+        return self.ScalepickerContent.count;
+    }
+    if([pickerView isEqual: keyPicker])
+    {
+        return self.KeypickerContent.count;
+    }
 }
 #pragma mark – Picker Delegate:
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [self.pickerContent objectAtIndex:row];
+    if([pickerView isEqual: scalePicker])
+    {
+        return [self.ScalepickerContent objectAtIndex:row];
+    }
+    if([pickerView isEqual: keyPicker])
+    {
+       return [self.KeypickerContent objectAtIndex:row];
+    }
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    //NOT DONE I DON'T KNOW WHAT TO PUT HERE ALSDFKJSALKDJF T_T -YURIKA
-    aqp.currentScaleType = row;
-    /*switch (row) {
-        case 0:
-            self = penta;
-            aqp.currentScaleType = penta;
-            break;
-        case 1:
-            self = Maj;
-            aqp.currentScaleType = Maj;
-            break;
-        case 2:
-            self = harmin;
-            aqp.currentScaleType = harmin;
-            break;
-        case 3:
-            self = natmin;
-            aqp.currentScaleType = natmin;
-            break;
-        case 4:
-            self = blue;
-            aqp.currentScaleType = blue;
-            break;
-        default:
-            break;
-    }*/
-    
+    if([pickerView isEqual: scalePicker])
+    {
+        aqp.currentScaleType = row;
+    }
+    if([pickerView isEqual: keyPicker]){
+        aqp.currentKey = row;
+    }
 }
 
 - (void)viewDidUnload

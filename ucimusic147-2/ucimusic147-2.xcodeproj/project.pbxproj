@@ -21,8 +21,6 @@
 		2C254327176A50940076BB43 /* MUS147ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2542F4176A50920076BB43 /* MUS147ViewController.xib */; };
 		2C254328176A50940076BB43 /* MUS147ViewControllerSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542F6176A50920076BB43 /* MUS147ViewControllerSub.m */; };
 		2C254329176A50940076BB43 /* MUS147ViewControllerSub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2542F7176A50920076BB43 /* MUS147ViewControllerSub.xib */; };
-		2C25432A176A50940076BB43 /* MUS147ViewControllerSub2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542F9176A50920076BB43 /* MUS147ViewControllerSub2.m */; };
-		2C25432B176A50940076BB43 /* MUS147ViewControllerSub2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2542FA176A50920076BB43 /* MUS147ViewControllerSub2.xib */; };
 		2C25432C176A50940076BB43 /* MUS147AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542FC176A50920076BB43 /* MUS147AppDelegate.m */; };
 		2C25432D176A50940076BB43 /* MUS147AQRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542FE176A50920076BB43 /* MUS147AQRecorder.m */; };
 		2C25432E176A50940076BB43 /* MUS147Effect_BiQuad.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C254301176A50930076BB43 /* MUS147Effect_BiQuad.m */; };
@@ -71,9 +69,6 @@
 		2C2542F5176A50920076BB43 /* MUS147ViewControllerSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub.h; sourceTree = "<group>"; };
 		2C2542F6176A50920076BB43 /* MUS147ViewControllerSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147ViewControllerSub.m; sourceTree = "<group>"; };
 		2C2542F7176A50920076BB43 /* MUS147ViewControllerSub.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewControllerSub.xib; sourceTree = "<group>"; };
-		2C2542F8176A50920076BB43 /* MUS147ViewControllerSub2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub2.h; sourceTree = "<group>"; };
-		2C2542F9176A50920076BB43 /* MUS147ViewControllerSub2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147ViewControllerSub2.m; sourceTree = "<group>"; };
-		2C2542FA176A50920076BB43 /* MUS147ViewControllerSub2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewControllerSub2.xib; sourceTree = "<group>"; };
 		2C2542FB176A50920076BB43 /* MUS147AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147AppDelegate.h; sourceTree = "<group>"; };
 		2C2542FC176A50920076BB43 /* MUS147AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147AppDelegate.m; sourceTree = "<group>"; };
 		2C2542FD176A50920076BB43 /* MUS147AQRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147AQRecorder.h; sourceTree = "<group>"; };
@@ -170,58 +165,55 @@
 		21A4B844172C280700E1FACA /* ucimusic147-2 */ = {
 			isa = PBXGroup;
 			children = (
-				2C2542EF176A50920076BB43 /* MUS147AQPlayer.h */,
-				2C2542F0176A50920076BB43 /* MUS147AQPlayer.m */,
-				2C2542F1176A50920076BB43 /* MUS147View.h */,
-				2C2542F2176A50920076BB43 /* MUS147View.m */,
-				2C2542F3176A50920076BB43 /* MUS147ViewController.h */,
-				2C2542F4176A50920076BB43 /* MUS147ViewController.xib */,
-				2C2542F5176A50920076BB43 /* MUS147ViewControllerSub.h */,
-				2C2542F6176A50920076BB43 /* MUS147ViewControllerSub.m */,
-				2C2542F7176A50920076BB43 /* MUS147ViewControllerSub.xib */,
-				2C2542F8176A50920076BB43 /* MUS147ViewControllerSub2.h */,
-				2C2542F9176A50920076BB43 /* MUS147ViewControllerSub2.m */,
-				2C2542FA176A50920076BB43 /* MUS147ViewControllerSub2.xib */,
 				2C2542FB176A50920076BB43 /* MUS147AppDelegate.h */,
 				2C2542FC176A50920076BB43 /* MUS147AppDelegate.m */,
+				2C2542EF176A50920076BB43 /* MUS147AQPlayer.h */,
+				2C2542F0176A50920076BB43 /* MUS147AQPlayer.m */,
 				2C2542FD176A50920076BB43 /* MUS147AQRecorder.h */,
 				2C2542FE176A50920076BB43 /* MUS147AQRecorder.m */,
 				2C2542FF176A50930076BB43 /* MUS147AQShared.h */,
+				2C254306176A50930076BB43 /* MUS147Effect.h */,
+				2C254307176A50930076BB43 /* MUS147Effect.m */,
 				2C254300176A50930076BB43 /* MUS147Effect_BiQuad.h */,
 				2C254301176A50930076BB43 /* MUS147Effect_BiQuad.m */,
 				2C254302176A50930076BB43 /* MUS147Effect_Delay.h */,
 				2C254303176A50930076BB43 /* MUS147Effect_Delay.m */,
 				2C254304176A50930076BB43 /* MUS147Effect_Limiter.h */,
 				2C254305176A50930076BB43 /* MUS147Effect_Limiter.m */,
-				2C254306176A50930076BB43 /* MUS147Effect.h */,
-				2C254307176A50930076BB43 /* MUS147Effect.m */,
 				2C254308176A50930076BB43 /* MUS147Envelope.h */,
 				2C254309176A50930076BB43 /* MUS147Envelope.m */,
+				2C25430E176A50930076BB43 /* MUS147Event.h */,
+				2C25430F176A50930076BB43 /* MUS147Event.m */,
 				2C25430A176A50930076BB43 /* MUS147Event_Note.h */,
 				2C25430B176A50930076BB43 /* MUS147Event_Note.m */,
 				2C25430C176A50930076BB43 /* MUS147Event_Touch.h */,
 				2C25430D176A50930076BB43 /* MUS147Event_Touch.m */,
-				2C25430E176A50930076BB43 /* MUS147Event.h */,
-				2C25430F176A50930076BB43 /* MUS147Event.m */,
 				2C254310176A50930076BB43 /* MUS147Sequence.h */,
 				2C254311176A50930076BB43 /* MUS147Sequence.m */,
 				2C254312176A50930076BB43 /* MUS147Sequencer.h */,
 				2C254313176A50930076BB43 /* MUS147Sequencer.m */,
+				2C2542F1176A50920076BB43 /* MUS147View.h */,
+				2C2542F2176A50920076BB43 /* MUS147View.m */,
+				2C2542F3176A50920076BB43 /* MUS147ViewController.h */,
 				2C254314176A50930076BB43 /* MUS147ViewController.m */,
+				2C2542F4176A50920076BB43 /* MUS147ViewController.xib */,
+				2C2542F5176A50920076BB43 /* MUS147ViewControllerSub.h */,
+				2C2542F6176A50920076BB43 /* MUS147ViewControllerSub.m */,
+				2C2542F7176A50920076BB43 /* MUS147ViewControllerSub.xib */,
+				2C254321176A50940076BB43 /* MUS147Voice.h */,
+				2C254322176A50940076BB43 /* MUS147Voice.m */,
 				2C254315176A50930076BB43 /* MUS147Voice_BLIT.h */,
 				2C254316176A50940076BB43 /* MUS147Voice_BLIT.m */,
 				2C254317176A50940076BB43 /* MUS147Voice_BLITSaw.h */,
 				2C254318176A50940076BB43 /* MUS147Voice_BLITSaw.m */,
+				2C25431D176A50940076BB43 /* MUS147Voice_Sample.h */,
+				2C25431E176A50940076BB43 /* MUS147Voice_Sample.m */,
 				2C254319176A50940076BB43 /* MUS147Voice_Sample_Mem.h */,
 				2C25431A176A50940076BB43 /* MUS147Voice_Sample_Mem.m */,
 				2C25431B176A50940076BB43 /* MUS147Voice_Sample_SF.h */,
 				2C25431C176A50940076BB43 /* MUS147Voice_Sample_SF.m */,
-				2C25431D176A50940076BB43 /* MUS147Voice_Sample.h */,
-				2C25431E176A50940076BB43 /* MUS147Voice_Sample.m */,
 				2C25431F176A50940076BB43 /* MUS147Voice_Synth.h */,
 				2C254320176A50940076BB43 /* MUS147Voice_Synth.m */,
-				2C254321176A50940076BB43 /* MUS147Voice.h */,
-				2C254322176A50940076BB43 /* MUS147Voice.m */,
 				2C254323176A50940076BB43 /* MyScale.c */,
 				2C254324176A50940076BB43 /* MyScale.h */,
 				21A4B845172C280700E1FACA /* Supporting Files */,
@@ -306,7 +298,6 @@
 				2CBBE64417693056000AB81F /* Music147_2013-Info.plist in Resources */,
 				2C254327176A50940076BB43 /* MUS147ViewController.xib in Resources */,
 				2C254329176A50940076BB43 /* MUS147ViewControllerSub.xib in Resources */,
-				2C25432B176A50940076BB43 /* MUS147ViewControllerSub2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +312,6 @@
 				2C254325176A50940076BB43 /* MUS147AQPlayer.m in Sources */,
 				2C254326176A50940076BB43 /* MUS147View.m in Sources */,
 				2C254328176A50940076BB43 /* MUS147ViewControllerSub.m in Sources */,
-				2C25432A176A50940076BB43 /* MUS147ViewControllerSub2.m in Sources */,
 				2C25432C176A50940076BB43 /* MUS147AppDelegate.m in Sources */,
 				2C25432D176A50940076BB43 /* MUS147AQRecorder.m in Sources */,
 				2C25432E176A50940076BB43 /* MUS147Effect_BiQuad.m in Sources */,
