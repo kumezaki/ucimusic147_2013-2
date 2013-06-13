@@ -55,48 +55,94 @@ extern MUS147AQPlayer* aqp;
         Float64 x = pt.x/self.bounds.size.width;
         Float64 y = pt.y/self.bounds.size.height;
         
-        int section = (int)(x * 26); // sections
-        int noteNumber;
-        switch((ScaleType)aqp.currentScaleType)
-        {
-            case penta:
-                noteNumber = (int)(section/6)*12 + pentaScale[section%6];
-                break;
-            case blue:
-                noteNumber = (int)(section/8)*12 + blueScale[section%8];
-                break;
-            case Maj:
-                noteNumber = (int)(section/8)*12 + majScale[section%8];
-                break;
-            case harmin:
-                noteNumber = (int)(section/8)*12 + harminScale[section%8];
-                break;
-            case natmin:
-                noteNumber = (int)(section/8)*12 + natminScale[section%8];
-                break;
-            default:
-                break;
+        if (y < .5) { // top half
+            int section = (int)(x * 26); // 26 available "keys"
+            int noteNumber;
+            switch((ScaleType)aqp.currentScaleType)
+            {
+                // noteNumber = 12 * octave# + noteCount in the "octave"
+                case penta:
+                    noteNumber = (int)(section/6)*12 + pentaScale[section%6];
+                    break;
+                case blue:
+                    noteNumber = (int)(section/8)*12 + blueScale[section%8];
+                    break;
+                case Maj:
+                    noteNumber = (int)(section/8)*12 + majScale[section%8];
+                    break;
+                case harmin:
+                    noteNumber = (int)(section/8)*12 + harminScale[section%8];
+                    break;
+                case natmin:
+                    noteNumber = (int)(section/8)*12 + natminScale[section%8];
+                    break;
+                default:
+                    break;
+            }
+            
+            noteNumber += noteNumberOf(aqp.currentKey,2); // first note in the scale
+            
+            if (v != nil)
+            {
+                // amplitude controlled by accelerometer?
+                v.amp = [MUS147Event_Touch yToAmp:y];
+                
+                // float freq = [MUS147Event_Touch xToFreq:x];
+                float freq = freqOf(noteNumber);
+                NSLog(@"freq is %f", freq);
+                v.freq = freq;
+                if (!v.isOn)
+                    [v on];
+            }
+            
+            if (aqp.sequencer.recording)
+                [aqp.sequencer addTouchEvent:x :y :YES :t_pos];
         }
-        
-        noteNumber += noteNumberOf(aqp.currentKey,2);
-        
-        if (v != nil)
+        else
         {
-            v.amp = [MUS147Event_Touch yToAmp:y];
-            // float freq = [MUS147Event_Touch xToFreq:x];
-            float freq = freqOf(noteNumber);
-            NSLog(@"freq is %f", freq);
-            v.freq = freq;
-            if (!v.isOn)
-                [v on];
+            int section = (int)(x * 7) + 1; // 7 sections, compensate for 0-index
+            int scaleDegree = majScale[section - 1];
+            int* thisChord;
+            switch (section) 
+            {
+                case 1:
+                    thisChord = chord[Maj7];
+                    break;
+                case 2:
+                    thisChord = chord[min7];
+                    break;
+                case 3:
+                    thisChord = chord[firstInv];
+                    break;
+                case 4:
+                    thisChord = chord[Maj7];
+                    break;
+                case 5:
+                    thisChord = chord[dom7];
+                    break;
+                case 6:
+                    thisChord = chord[min7];
+                    break;
+                case 7:
+                    thisChord = chord[m7b5];
+                    break;
+            }
+            
+            // loop to add notes in the chord
+            for(UInt16 i = 0; i < 4; i++)
+            {
+                MUS147Voice* v = [aqp getSynthVoiceWithPos:(i+2)];
+                // noteNumber = key#(tonic) + scale degree + chord notes
+                int noteNumber = noteNumberOf(aqp.currentKey,3) + scaleDegree + thisChord[i];
+                v.freq = freqOf(noteNumber);
+                v.amp = .5;
+                if (!v.isOn) {
+                    [v on];
+                }
+            }
         }
-        
-        if (aqp.sequencer.recording)
-            [aqp.sequencer addTouchEvent:x :y :YES :t_pos];
     }
-
     [self setNeedsDisplay];
-     
 }
 
 -(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event
@@ -118,13 +164,13 @@ extern MUS147AQPlayer* aqp;
             if (v.isOn)
                 [v off];
         }
-        /*
+        
         if (aqp.sequencer.recording)
-            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos]; */
+            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos];
     }
     
     [self setNeedsDisplay];
-
+ 
 }
 
 -(SInt8)getTouchPos:(UITouch*)t
@@ -183,6 +229,14 @@ extern MUS147AQPlayer* aqp;
     
     // DO SOMETHING HERE
     // CHANGE VOLUME
+    
+    for(UInt16 i = 0; i < kNumVoices_Synth; i++)
+    {
+        MUS147Voice* v = [aqp getSynthVoiceWithPos:i];
+        v.amp = (acceleration.x + 1)/2;
+    }
+        
+    
 }
 
 /* unused

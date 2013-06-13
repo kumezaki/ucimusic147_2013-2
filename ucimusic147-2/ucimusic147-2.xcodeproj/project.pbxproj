@@ -17,7 +17,6 @@
 		21A4B853172C280700E1FACA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A4B852172C280700E1FACA /* Default@2x.png */; };
 		21A4B855172C280700E1FACA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21A4B854172C280700E1FACA /* Default-568h@2x.png */; };
 		2C254325176A50940076BB43 /* MUS147AQPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542F0176A50920076BB43 /* MUS147AQPlayer.m */; };
-		2C254326176A50940076BB43 /* MUS147View.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542F2176A50920076BB43 /* MUS147View.m */; };
 		2C254327176A50940076BB43 /* MUS147ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2542F4176A50920076BB43 /* MUS147ViewController.xib */; };
 		2C254328176A50940076BB43 /* MUS147ViewControllerSub.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2542F6176A50920076BB43 /* MUS147ViewControllerSub.m */; };
 		2C254329176A50940076BB43 /* MUS147ViewControllerSub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2542F7176A50920076BB43 /* MUS147ViewControllerSub.xib */; };
@@ -45,6 +44,7 @@
 		2CBBE63217692FA7000AB81F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBBE63117692FA7000AB81F /* CoreLocation.framework */; };
 		2CBBE64417693056000AB81F /* Music147_2013-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CBBE63C17693056000AB81F /* Music147_2013-Info.plist */; };
 		2CCE36A01769364F00063C88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE369F1769364F00063C88 /* main.m */; };
+		437BDB7E176A71F300E1F25C /* MUS147View.m in Sources */ = {isa = PBXBuildFile; fileRef = 437BDB7D176A71F300E1F25C /* MUS147View.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,6 @@
 		2C2542EF176A50920076BB43 /* MUS147AQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147AQPlayer.h; sourceTree = "<group>"; };
 		2C2542F0176A50920076BB43 /* MUS147AQPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147AQPlayer.m; sourceTree = "<group>"; };
 		2C2542F1176A50920076BB43 /* MUS147View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147View.h; sourceTree = "<group>"; };
-		2C2542F2176A50920076BB43 /* MUS147View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUS147View.m; sourceTree = "<group>"; };
 		2C2542F3176A50920076BB43 /* MUS147ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewController.h; sourceTree = "<group>"; };
 		2C2542F4176A50920076BB43 /* MUS147ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MUS147ViewController.xib; sourceTree = "<group>"; };
 		2C2542F5176A50920076BB43 /* MUS147ViewControllerSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUS147ViewControllerSub.h; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		2CBBE63C17693056000AB81F /* Music147_2013-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Music147_2013-Info.plist"; sourceTree = "<group>"; };
 		2CBBE63D17693056000AB81F /* Music147_2013-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Music147_2013-Prefix.pch"; sourceTree = "<group>"; };
 		2CCE369F1769364F00063C88 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		437BDB7D176A71F300E1F25C /* MUS147View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUS147View.m; path = ../MUS147View.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +193,7 @@
 				2C254312176A50930076BB43 /* MUS147Sequencer.h */,
 				2C254313176A50930076BB43 /* MUS147Sequencer.m */,
 				2C2542F1176A50920076BB43 /* MUS147View.h */,
-				2C2542F2176A50920076BB43 /* MUS147View.m */,
+				437BDB7D176A71F300E1F25C /* MUS147View.m */,
 				2C2542F3176A50920076BB43 /* MUS147ViewController.h */,
 				2C254314176A50930076BB43 /* MUS147ViewController.m */,
 				2C2542F4176A50920076BB43 /* MUS147ViewController.xib */,
@@ -310,7 +310,6 @@
 			files = (
 				2CCE36A01769364F00063C88 /* main.m in Sources */,
 				2C254325176A50940076BB43 /* MUS147AQPlayer.m in Sources */,
-				2C254326176A50940076BB43 /* MUS147View.m in Sources */,
 				2C254328176A50940076BB43 /* MUS147ViewControllerSub.m in Sources */,
 				2C25432C176A50940076BB43 /* MUS147AppDelegate.m in Sources */,
 				2C25432D176A50940076BB43 /* MUS147AQRecorder.m in Sources */,
@@ -333,6 +332,7 @@
 				2C25433E176A50940076BB43 /* MUS147Voice_Synth.m in Sources */,
 				2C25433F176A50940076BB43 /* MUS147Voice.m in Sources */,
 				2C254340176A50940076BB43 /* MyScale.c in Sources */,
+				437BDB7E176A71F300E1F25C /* MUS147View.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

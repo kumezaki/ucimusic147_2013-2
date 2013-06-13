@@ -76,7 +76,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 
     for (UInt8 i = 0; i < kNumVoices_Synth; i++)
     {
-        voice_synth_blit[i] = [[MUS147Voice_BLIT alloc] init];
+        voice_synth_blit[i] = [[MUS147Voice_Synth alloc] init]; // changed to sin/saw mixture
         voice_synth_blitsaw[i] = [[MUS147Voice_BLITSaw alloc] init];
     }
 
@@ -84,26 +84,6 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     for (UInt8 i = 0; i < kNumVoices; i++)
     {
         voice[i] = voice_synth_blit[i];
-        
-        /* don't need sample voices
-        switch (i)
-        {
-            case 0:
-                voice[i] = voice_samp_mem[0];
-                break;
-            case 1:
-                voice[i] = voice_samp_sf[0];
-                break;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                voice[i] = voice_synth_blit[i-2];
-                break;
-            default:
-                break;
-        }
-         */
     }
     
     for (UInt8 i = 0; i < kNumEffects; i++)

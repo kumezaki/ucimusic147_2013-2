@@ -17,6 +17,27 @@ int harminScale[8] = {0, 2, 3, 5, 7, 8, 11, 12};
 int natminScale[8] = {0, 2, 3, 5, 7, 8, 10, 12};
 int blueScale[8] = {0, 3, 5, 6, 7, 10, 11, 12};
 
+int chord[9][4] = {
+    //Major
+    {0, 7, 16, 19},
+    //Major2
+    {0, 7, 14, 16},
+    //sus4
+    {0, 7, 12, 17},
+    //min
+    {0, 7, 15, 19},
+    //Maj7
+    {0, 7, 11, 16},
+    //min7
+    {0, 7, 10, 15},
+    //dom7
+    {0, 7, 10, 16},
+    //firstInv
+    {4, 12, 19, 24},
+    // m7b5
+    {0, 6, 10, 15}
+};
+
 float freqOf(int noteNumber)
 {
     return 440. * pow(2, ((float)noteNumber-69)/12);
