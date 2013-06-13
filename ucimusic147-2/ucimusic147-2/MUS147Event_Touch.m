@@ -44,9 +44,9 @@ extern MUS147AQPlayer* aqp;
     voice = nil;
 }
 
-+(Float64)xToFreq:(Float64)x
++(Float64)xToFreq:(int)noteNumber
 {
-    return x * 2000.;
+    return 440. * pow(2, ((float)noteNumber-69)/12);
 }
 
 +(Float64)yToAmp:(Float64)y

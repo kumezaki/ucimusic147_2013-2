@@ -36,25 +36,6 @@ extern MUS147AQPlayer* aqp;
 {
     for (UITouch* t in touches)
     {
-        CGPoint pt = [t locationInView:self];
-        Float64 x = pt.x/self.bounds.size.width;
-        Float64 y = pt.y/self.bounds.size.height;
-        
-        // demo
-        int section = (int)(x * 26); // sections
-        int noteNumber;
-        // top half is pentatonic scale
-        noteNumber = (int)(section/6)*12 + pentaScale[section%6];
-        // balance amplitude for top half
-        y += .5;
-        
-        [aqp getVoice:1].freq = freqOf(noteNumber + noteNumberOf(Eb,2));
-        [aqp getVoice:1].amp = 1. - y;
-    }
-    
-    /* ko's
-    for (UITouch* t in touches)
-    {
         SInt8 t_pos = [self getTouchPos:t];
         if (t_pos < 0)
         {
@@ -74,10 +55,17 @@ extern MUS147AQPlayer* aqp;
         Float64 x = pt.x/self.bounds.size.width;
         Float64 y = pt.y/self.bounds.size.height;
         
+        int section = (int)(x * 26); // sections
+        int noteNumber;
+        // top half is pentatonic scale
+        noteNumber = (int)(section/6)*12 + pentaScale[section%6];
+        
         if (v != nil)
         {
-            v.amp = [MUS147Event_Touch yToAmp:y];
-            v.freq = [MUS147Event_Touch xToFreq:x];
+            v.amp = [MUS147Event_Touch yToAmp:(y+0.5)];
+            float freq = [MUS147Event_Touch xToFreq:(noteNumber + noteNumberOf(Eb,2))];
+            NSLog(@"freq is %f", freq);
+            v.freq = freq;
             if (!v.isOn)
                 [v on];
         }
@@ -87,12 +75,13 @@ extern MUS147AQPlayer* aqp;
     }
 
     [self setNeedsDisplay];
-     */
+     
 }
 
 -(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch* t in touches)
+/*
+ for (UITouch* t in touches)
     {
         SInt8 t_pos = [self removeTouch:t];
         if (t_pos < 0)
@@ -114,6 +103,7 @@ extern MUS147AQPlayer* aqp;
     }
     
     [self setNeedsDisplay];
+ */
 }
 
 -(SInt8)getTouchPos:(UITouch*)t
