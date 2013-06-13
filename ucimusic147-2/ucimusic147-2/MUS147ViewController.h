@@ -21,9 +21,8 @@
     IBOutlet UISlider* speed1Slider;
     IBOutlet UISlider* amp1Slider;
     IBOutlet UISlider* cutoffSlider;
-     */
     IBOutlet UISegmentedControl* waveSegmentedControl;
-     
+    */
 }
 
 /* unused
@@ -46,8 +45,8 @@
 -(IBAction)changeView:(id)sender;
 -(IBAction)changeView2:(id)sender;
  
--(IBAction)seqWave:(id)sender;
+//-(IBAction)seqWave:(id)sender;
 
--(IBAction)getCurrentLocation:(id)sender;
+//-(IBAction)getCurrentLocation:(id)sender;
 
 @end

@@ -37,10 +37,10 @@ extern MUS147AQPlayer* aqp;
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)seqWave:(id)sender
-{
-    aqp.synthVoiceType = waveSegmentedControl.selectedSegmentIndex;
-}
+//-(IBAction)seqWave:(id)sender
+//{
+//    aqp.synthVoiceType = waveSegmentedControl.selectedSegmentIndex;
+//}
 
 //button action to go back
 - (IBAction)goBack2

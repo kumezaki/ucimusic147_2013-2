@@ -9,9 +9,9 @@
 #ifndef ucimusic147_2_MyScale_h
 #define ucimusic147_2_MyScale_h
 
-typedef enum { penta, blue, Maj, harmin, natmin } ScaleType;
+typedef enum { penta = 1, blue = 2, Maj = 3, harmin = 4, natmin = 5} ScaleType;
 typedef enum { A, As, Ab, B, Bs, Bb, C, Cs, Cb,
-    D, Ds, Db, E, Es, Eb, F, Fs, Fb, G, Gs, Gb} noteType;
+    D, Ds, Db, E, Es, Eb, F, Fs, Fb, G, Gs, Gb} NoteType;
 extern int pentaScale[6];
 extern int majScale[8];
 extern int harminScale[8];
@@ -42,6 +42,6 @@ typedef enum { Major, Maj2, sus4, min, Maj7, min7, dom7, firstInv } ChordType;
 
 
 extern float freqOf(int noteNumber);
-extern int noteNumberOf(noteType noteName, int octave);
+extern int noteNumberOf(NoteType noteName, int octave);
 
 #endif

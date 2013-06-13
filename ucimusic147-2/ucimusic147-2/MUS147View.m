@@ -57,13 +57,34 @@ extern MUS147AQPlayer* aqp;
         
         int section = (int)(x * 26); // sections
         int noteNumber;
-        // top half is pentatonic scale
-        noteNumber = (int)(section/6)*12 + pentaScale[section%6];
+        switch((ScaleType)aqp.currentScaleType)
+        {
+            case penta:
+                noteNumber = (int)(section/6)*12 + pentaScale[section%6];
+                break;
+            case blue:
+                noteNumber = (int)(section/8)*12 + blueScale[section%8];
+                break;
+            case Maj:
+                noteNumber = (int)(section/8)*12 + majScale[section%8];
+                break;
+            case harmin:
+                noteNumber = (int)(section/8)*12 + harminScale[section%8];
+                break;
+            case natmin:
+                noteNumber = (int)(section/8)*12 + natminScale[section%8];
+                break;
+            default:
+                break;
+        }
+        
+        noteNumber += noteNumberOf(aqp.currentKey,2);
         
         if (v != nil)
         {
             v.amp = [MUS147Event_Touch yToAmp:(y+0.5)];
-            float freq = [MUS147Event_Touch xToFreq:(noteNumber + noteNumberOf(Eb,2))];
+            // float freq = [MUS147Event_Touch xToFreq:x];
+            float freq = freqOf(noteNumber);
             NSLog(@"freq is %f", freq);
             v.freq = freq;
             if (!v.isOn)

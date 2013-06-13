@@ -16,6 +16,7 @@
 #import "MUS147Voice_Synth.h"
 #import "MUS147Voice_BLIT.h"
 #import "MUS147Voice_BLITSaw.h"
+#import "MyScale.h"
 
 MUS147AQPlayer *aqp = nil;
 
@@ -55,6 +56,8 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 
 @synthesize sequencer;
 @synthesize synthVoiceType;
+@synthesize currentScaleType;
+@synthesize currentKey;
 
 -(void)dealloc
 {
@@ -80,6 +83,9 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     // ... then assign them to array of active voices
     for (UInt8 i = 0; i < kNumVoices; i++)
     {
+        voice[i] = voice_synth_blit[i];
+        
+        /* don't need sample voices
         switch (i)
         {
             case 0:
@@ -97,6 +103,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
             default:
                 break;
         }
+         */
     }
     
     for (UInt8 i = 0; i < kNumEffects; i++)
@@ -122,6 +129,9 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     }
     
     sequencer = [[MUS147Sequencer alloc] init];
+    
+    currentKey = C;
+    currentScaleType = penta;
     
 	[self start];
     
@@ -250,6 +260,11 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 -(MUS147Effect_BiQuad*)getBiQuad
 {
     return (MUS147Effect_BiQuad*)effect[0];
+}
+
+-(void)setDelayTime:(Float64)time
+{
+    effect[1].delayTime = time * kMaxDelayTime;
 }
 
 -(void)reportElapsedFrames:(UInt32)num_frames

@@ -12,6 +12,7 @@
 #import "MUS147AQShared.h"
 #import "MUS147Sequencer.h"
 #import "MUS147Voice.h"
+#import "MyScale.h"
 
 @class MUS147Effect;
 @class MUS147Effect_BiQuad;
@@ -23,7 +24,9 @@
 #define kNumVoices          6
 
 // number of possible synth voices
-#define kNumVoices_Synth    4
+//#define kNumVoices_Synth    4
+// need voices for chord and scale
+#define kNumVoices_Synth    6
 
 // number of possible effects
 #define kNumEffects         3
@@ -52,6 +55,8 @@
 
 @property (nonatomic,readwrite) UInt8 synthVoiceType;
 @property (readonly) MUS147Sequencer* sequencer;
+@property (readwrite) ScaleType* currentScaleType;
+@property (readwrite) NoteType* currentKey;
 
 -(void)setup;
 
@@ -66,6 +71,8 @@
 -(MUS147Voice*)getRecordVoice;
 
 -(MUS147Effect_BiQuad*)getBiQuad;
+
+-(void)setDelayTime:(Float64)time;
 
 -(void)reportElapsedFrames:(UInt32)num_frames;
 

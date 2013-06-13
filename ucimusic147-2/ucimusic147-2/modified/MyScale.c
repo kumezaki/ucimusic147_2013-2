@@ -17,8 +17,6 @@ int harminScale[8] = {0, 2, 3, 5, 7, 8, 11, 12};
 int natminScale[8] = {0, 2, 3, 5, 7, 8, 10, 12};
 int blueScale[8] = {0, 3, 5, 6, 7, 10, 11, 12};
 
-
-
 float freqOf(int noteNumber)
 {
     return 440. * pow(2, ((float)noteNumber-69)/12);
@@ -27,7 +25,7 @@ float freqOf(int noteNumber)
 /* helper function to calculate note number from note notation
  * A0 = lowest key on piano, C4 = middle C, A4 = 440 Hz
  */
-int noteNumberOf(noteType noteName, int octave)
+int noteNumberOf(NoteType noteName, int octave)
 {
     int note;
     switch (noteName) {

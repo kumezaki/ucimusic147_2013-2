@@ -44,10 +44,13 @@ extern MUS147AQPlayer* aqp;
     voice = nil;
 }
 
-+(Float64)xToFreq:(int)noteNumber
++(Float64)xToFreq:(Float64)x
 {
-    return 440. * pow(2, ((float)noteNumber-69)/12);
+    return 2000. * x;
 }
+/* I'm using noteNumber to generate frequency
+ 440. * pow(2, ((float)noteNumber-69)/12);
+ */
 
 +(Float64)yToAmp:(Float64)y
 {

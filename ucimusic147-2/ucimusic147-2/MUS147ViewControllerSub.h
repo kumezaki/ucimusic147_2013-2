@@ -8,7 +8,7 @@
 
 #import "MUS147ViewController.h"
 
-@interface MUS147ViewControllerSub : MUS147ViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface MUS147ViewControllerSub : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
 {
     IBOutlet UIButton* doneButton;
     IBOutlet UISlider* delaySlider;

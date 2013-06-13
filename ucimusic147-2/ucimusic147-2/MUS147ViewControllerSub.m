@@ -48,6 +48,26 @@ extern MUS147AQPlayer* aqp;
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)setDelay:(id)sender
+{
+    [aqp setDelayTime:delaySlider.value];
+}
+
+-(IBAction)setLimiter:(id)sender
+{
+    
+}
+
+-(IBAction)setScale0:(id)sender
+{
+    
+}
+
+-(IBAction)setScale1:(id)sender
+{
+    
+}
+
 //picker content here
 - (NSArray *)pickerContent
 {
@@ -76,26 +96,31 @@ extern MUS147AQPlayer* aqp;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     //NOT DONE I DON'T KNOW WHAT TO PUT HERE ALSDFKJSALKDJF T_T -YURIKA
-    
-    switch (row) {
+    aqp.currentScaleType = row;
+    /*switch (row) {
         case 0:
             self = penta;
+            aqp.currentScaleType = penta;
             break;
         case 1:
             self = Maj;
+            aqp.currentScaleType = Maj;
             break;
         case 2:
             self = harmin;
+            aqp.currentScaleType = harmin;
             break;
         case 3:
             self = natmin;
+            aqp.currentScaleType = natmin;
             break;
         case 4:
             self = blue;
+            aqp.currentScaleType = blue;
             break;
         default:
             break;
-    }
+    }*/
     
 }
 

@@ -8,7 +8,7 @@
 
 #import "MUS147ViewController.h"
 
-@interface MUS147ViewControllerSub2 : MUS147ViewController
+@interface MUS147ViewControllerSub2 : UIViewController
 {
     IBOutlet UIButton* doneButton2;
     //IBOutlet UISegmentedControl* waveSegmentedControl;
@@ -16,7 +16,7 @@
 }
 
 
--(IBAction)seqWave:(id)sender;
+//-(IBAction)seqWave:(id)sender;
 
 
 //done button
