@@ -14,7 +14,7 @@
 {
     self = [super init];
     
-    maxAmp = 0.75;
+    maxAmp = 1.0;
     
     return self;
 }

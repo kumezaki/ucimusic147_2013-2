@@ -31,9 +31,9 @@
 
 -(void)update:(UInt32)num_samples
 {
-    NSLog(@"envoutb4 %f", output);
+//    NSLog(@"envoutb4 %f", output);
 	output += (delta * num_samples);
-    NSLog(@"envoutaft %f", output);
+//    NSLog(@"envoutaft %f", output);
     
 	if (output >= 1.0) { output = 1.0; delta = 0.0; }
 	else if (output <= 0.0) { output = 0.0; delta = 0.0; }
@@ -42,11 +42,13 @@
 -(void)on
 {
 	delta = delta_attack;
+    //NSLog(@"delta %f",delta);
 }
 
 -(void)off
 {
 	delta = delta_release;
+   // NSLog(@"delta %f",delta);
 }
 
 @end

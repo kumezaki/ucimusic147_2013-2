@@ -74,6 +74,8 @@
 
 -(void)setDelayTime:(Float64)time;
 
+-(void)setDelayAmp:(Float64)amp;
+
 -(void)reportElapsedFrames:(UInt32)num_frames;
 
 -(void)doAudioBuffer:(Float64*)buffer :(UInt32)num_samples;

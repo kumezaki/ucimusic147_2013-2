@@ -15,5 +15,6 @@
 }
 
 @synthesize delayTime;
+@synthesize delayAmp;
 
 @end

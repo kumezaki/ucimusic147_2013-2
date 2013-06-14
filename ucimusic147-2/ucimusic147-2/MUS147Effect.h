@@ -26,6 +26,7 @@
 }
 
 @property (readwrite) Float64 delayTime;
+@property (readwrite) Float64 delayAmp;
 
 -(void)processAudioBuffer:(Float64*)buffer :(UInt32)num_samples;
 

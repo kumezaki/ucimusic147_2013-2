@@ -14,6 +14,10 @@
 
 #import "MyScale.h"
 
+#import "MUS147Effect_BiQuad.h"
+
+#import "MUS147Effect_Delay.h"
+
 extern MUS147AQPlayer* aqp;
 
 @implementation MUS147View
@@ -34,6 +38,7 @@ extern MUS147AQPlayer* aqp;
 
 -(void)doTouchesOn:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    // NSLog(@"let's go to the pub =D");
     for (UITouch* t in touches)
     {
         SInt8 t_pos = [self getTouchPos:t];
@@ -80,19 +85,21 @@ extern MUS147AQPlayer* aqp;
                     break;
             }
             
-            noteNumber += noteNumberOf(aqp.currentKey,2); // first note in the scale
+            // account for first note in the scale
+            noteNumber += noteNumberOf(aqp.currentKey,2); 
             
             if (v != nil)
             {
-                // amplitude controlled by accelerometer?
-                v.amp = [MUS147Event_Touch yToAmp:y];
+                v.amp = [MUS147Event_Touch yToAmp:(y/2)];
                 
                 // float freq = [MUS147Event_Touch xToFreq:x];
+                
                 float freq = freqOf(noteNumber);
                 // NSLog(@"freq is %f", freq);
+                
                 v.freq = freq;
                 if (!v.isOn) {
-                    NSLog(@"voice on");
+                   // NSLog(@"voice on");
                     [v on];
                 }
             }
@@ -100,13 +107,14 @@ extern MUS147AQPlayer* aqp;
             if (aqp.sequencer.recording)
                 [aqp.sequencer addTouchEvent:x :y :YES :t_pos];
         }
-        else
+        else // bottom half of the screen triggers chords of the selected key
         {
             int section = (int)(x * 7) + 1; // 7 sections, compensate for 0-index
             int scaleDegree = majScale[section - 1];
             int* thisChord;
             switch (section) 
             {
+                // 1∆9 2-7 1/3 3M 4∆7 5.7 6-7 7m7b5
                 case 1:
                     thisChord = chord[Maj2];
                     break;
@@ -114,8 +122,10 @@ extern MUS147AQPlayer* aqp;
                     thisChord = chord[min];
                     break;
                 case 3:
-                    
-                    thisChord = chord[firstInv];
+                    if(y < .75)
+                        thisChord = chord[dom7];
+                    else
+                        thisChord = chord[firstInv];
                     break;
                 case 4:
                     thisChord = chord[Maj7];
@@ -134,8 +144,9 @@ extern MUS147AQPlayer* aqp;
             // loop to add notes in the chord
             for(UInt16 i = 0; i < 4; i++)
             {
-                float amp = .4;
+                float amp = .1;
                 MUS147Voice* v = [aqp getSynthVoiceWithPos:(i+2)];
+                
                 // noteNumber = key#(tonic) + scale degree + chord notes
                 int noteNumber = noteNumberOf(aqp.currentKey,3) + scaleDegree + thisChord[i];
                 v.freq = freqOf(noteNumber);
@@ -143,7 +154,7 @@ extern MUS147AQPlayer* aqp;
                 if (!v.isOn) {
                     [v on];
                 }
-                amp = amp - .08;
+                amp = amp - .02;
             }
         }
     }
@@ -152,29 +163,47 @@ extern MUS147AQPlayer* aqp;
 
 -(void)doTouchesOff:(NSSet *)touches withEvent:(UIEvent *)event
 {
-
  for (UITouch* t in touches)
     {
-        // NSLog(@"touch off");
-        SInt8 t_pos = [self removeTouch:t];
-        if (t_pos < 0)
-        {
-            NSLog(@"could not remove touch");
-            continue;
+        CGPoint pt = [t locationInView:self];
+        Float64 y = pt.y/self.bounds.size.height;
+        
+        if (y < .5) // top half 
+        { 
+            SInt8 t_pos = [self removeTouch:t];
+            if (t_pos < 0)
+            {
+                NSLog(@"could not remove touch");
+                continue;
+            }
+            
+            MUS147Voice* v = voice[t_pos];
+            
+            if (v != nil)
+            {
+                if (v.isOn) {
+                    [v off];
+                   // NSLog(@"voice off");
+                }
+            }
+            
+            if (aqp.sequencer.recording)
+                [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos];
         }
-
-        MUS147Voice* v = voice[t_pos];
-
-        if (v != nil)
+        else // bottom half 
         {
-            if (v.isOn) {
-                [v off];
-                NSLog(@"voice off");
+            for(UInt16 i = 0; i < 4; i++)
+            {
+                MUS147Voice* v = [aqp getSynthVoiceWithPos:(i+2)];
+                if (v != nil)
+                {
+                    if (v.isOn) {
+                        [v off];
+                        //NSLog(@"voice off");
+                    }
+                }
             }
         }
-        
-        if (aqp.sequencer.recording)
-            [aqp.sequencer addTouchEvent:0. :0. :NO :t_pos];
     }
     
     [self setNeedsDisplay];
@@ -234,15 +263,29 @@ extern MUS147AQPlayer* aqp;
     // comment the NSLog when running on iOS (for Simulator leave it uncommented)
     // NSLog(@"%f %f %f",acceleration.x,acceleration.y,acceleration.z);
     
+    /* attempt to do something with all voices
     for(UInt16 i = 0; i < kNumVoices_Synth; i++)
     {
         MUS147Voice* v = [aqp getSynthVoiceWithPos:i];
-        
+        v.amp -= acceleration.x;
+     
         if(acceleration.x > 0 || acceleration.z > 0)
             v.amp = v.amp + .01;
         else
             v.amp = v.amp - .01;
     }
+    */
+    
+    // apply a magical smoothing function to acceleration.x
+    //MUS147Voice* v = [aqp getSynthVoiceWithPos:0];
+    //v.amp *= acceleration.x;
+    [aqp setDelayAmp:acceleration.x];
+    
+    // attemp to trigger LPF cutoff with acccelerometer
+    // phone perpendicular with horizontal = 1, flat = 0
+    // MUS147Effect_BiQuad* bq = aqp.getBiQuad;
+    // [bq biQuad_set:LPF:-6:acceleration.x * kSR / 2. - 1000.:kSR:0.25];
+    //NSLog(@"accx %f", acceleration.x);
 }
 
 /* unused

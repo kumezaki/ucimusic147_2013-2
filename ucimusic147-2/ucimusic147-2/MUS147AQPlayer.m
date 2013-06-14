@@ -110,7 +110,7 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
     
     sequencer = [[MUS147Sequencer alloc] init];
     
-    currentKey = C;
+    currentKey = G;
     currentScaleType = blue;
     
 	[self start];
@@ -245,6 +245,11 @@ void MUS147AQBufferCallback(void *inUserData, AudioQueueRef inAQ, AudioQueueBuff
 -(void)setDelayTime:(Float64)time
 {
     effect[1].delayTime = time * kMaxDelayTime;
+}
+
+-(void)setDelayAmp:(Float64)amp
+{
+    effect[1].delayAmp = amp;
 }
 
 -(void)reportElapsedFrames:(UInt32)num_frames
