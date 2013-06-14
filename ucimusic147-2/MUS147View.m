@@ -91,8 +91,10 @@ extern MUS147AQPlayer* aqp;
                 float freq = freqOf(noteNumber);
                 // NSLog(@"freq is %f", freq);
                 v.freq = freq;
-                if (!v.isOn)
+                if (!v.isOn) {
+                    NSLog(@"voice on");
                     [v on];
+                }
             }
             
             if (aqp.sequencer.recording)
@@ -152,6 +154,7 @@ extern MUS147AQPlayer* aqp;
 
  for (UITouch* t in touches)
     {
+        // NSLog(@"touch off");
         SInt8 t_pos = [self removeTouch:t];
         if (t_pos < 0)
         {
@@ -163,8 +166,10 @@ extern MUS147AQPlayer* aqp;
 
         if (v != nil)
         {
-            if (v.isOn)
+            if (v.isOn) {
                 [v off];
+                NSLog(@"voice off");
+            }
         }
         
         if (aqp.sequencer.recording)
@@ -172,7 +177,6 @@ extern MUS147AQPlayer* aqp;
     }
     
     [self setNeedsDisplay];
- 
 }
 
 -(SInt8)getTouchPos:(UITouch*)t

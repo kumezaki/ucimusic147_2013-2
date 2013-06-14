@@ -45,6 +45,7 @@
 		2CBBE64417693056000AB81F /* Music147_2013-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CBBE63C17693056000AB81F /* Music147_2013-Info.plist */; };
 		2CCE36A01769364F00063C88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCE369F1769364F00063C88 /* main.m */; };
 		437BDB7E176A71F300E1F25C /* MUS147View.m in Sources */ = {isa = PBXBuildFile; fileRef = 437BDB7D176A71F300E1F25C /* MUS147View.m */; };
+		43B4AD9B176AA0AF00A6BEE3 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B4AD9A176AA0AF00A6BEE3 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +116,7 @@
 		2CBBE63D17693056000AB81F /* Music147_2013-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Music147_2013-Prefix.pch"; sourceTree = "<group>"; };
 		2CCE369F1769364F00063C88 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		437BDB7D176A71F300E1F25C /* MUS147View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MUS147View.m; path = ../MUS147View.m; sourceTree = "<group>"; };
+		43B4AD9A176AA0AF00A6BEE3 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B4AD9B176AA0AF00A6BEE3 /* CoreMotion.framework in Frameworks */,
 				2CBBE63217692FA7000AB81F /* CoreLocation.framework in Frameworks */,
 				219D6B40173236B5008C11A8 /* AudioToolbox.framework in Frameworks */,
 				21A4B83F172C280700E1FACA /* UIKit.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		21A4B83D172C280700E1FACA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43B4AD9A176AA0AF00A6BEE3 /* CoreMotion.framework */,
 				2CBBE63117692FA7000AB81F /* CoreLocation.framework */,
 				219D6B3F173236B5008C11A8 /* AudioToolbox.framework */,
 				21A4B83E172C280700E1FACA /* UIKit.framework */,

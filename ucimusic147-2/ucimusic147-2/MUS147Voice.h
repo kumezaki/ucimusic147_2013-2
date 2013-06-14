@@ -19,6 +19,8 @@
     Float64 speed;
 
     MUS147Envelope* env;
+    
+    BOOL voiceOn;
 }
 
 @property (readwrite) Float64 freq;

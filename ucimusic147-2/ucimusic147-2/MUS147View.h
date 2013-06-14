@@ -25,4 +25,6 @@
 -(SInt8)addTouch:(UITouch*)t;
 -(SInt8)removeTouch:(UITouch*)t;
 
+-(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration;
+
 @end
