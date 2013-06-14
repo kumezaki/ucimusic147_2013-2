@@ -89,7 +89,7 @@ extern MUS147AQPlayer* aqp;
                 
                 // float freq = [MUS147Event_Touch xToFreq:x];
                 float freq = freqOf(noteNumber);
-                NSLog(@"freq is %f", freq);
+                // NSLog(@"freq is %f", freq);
                 v.freq = freq;
                 if (!v.isOn)
                     [v on];
@@ -106,10 +106,10 @@ extern MUS147AQPlayer* aqp;
             switch (section) 
             {
                 case 1:
-                    thisChord = chord[Maj7];
+                    thisChord = chord[Maj2];
                     break;
                 case 2:
-                    thisChord = chord[min7];
+                    thisChord = chord[min];
                     break;
                 case 3:
                     thisChord = chord[firstInv];
@@ -131,14 +131,16 @@ extern MUS147AQPlayer* aqp;
             // loop to add notes in the chord
             for(UInt16 i = 0; i < 4; i++)
             {
+                float amp = .4;
                 MUS147Voice* v = [aqp getSynthVoiceWithPos:(i+2)];
                 // noteNumber = key#(tonic) + scale degree + chord notes
                 int noteNumber = noteNumberOf(aqp.currentKey,3) + scaleDegree + thisChord[i];
                 v.freq = freqOf(noteNumber);
-                v.amp = .5;
+                v.amp = amp;
                 if (!v.isOn) {
                     [v on];
                 }
+                amp = amp - .08;
             }
         }
     }
@@ -227,16 +229,15 @@ extern MUS147AQPlayer* aqp;
     // comment the NSLog when running on iOS (for Simulator leave it uncommented)
     // NSLog(@"%f %f %f",acceleration.x,acceleration.y,acceleration.z);
     
-    // DO SOMETHING HERE
-    // CHANGE VOLUME
-    
     for(UInt16 i = 0; i < kNumVoices_Synth; i++)
     {
         MUS147Voice* v = [aqp getSynthVoiceWithPos:i];
-        v.amp = (acceleration.x + 1)/2;
-    }
         
-    
+        if(acceleration.x > 0 || acceleration.z > 0)
+            v.amp = v.amp + .01;
+        else
+            v.amp = v.amp - .01;
+    }
 }
 
 /* unused

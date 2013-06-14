@@ -97,7 +97,7 @@ extern MUS147AQPlayer* aqp;
 {
    if([pickerView isEqual: scalePicker])
     {
-       return 1;
+        return 1;
     }
     if([pickerView isEqual: keyPicker])
     {
@@ -130,12 +130,10 @@ extern MUS147AQPlayer* aqp;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if([pickerView isEqual: scalePicker])
-    {
-        aqp.currentScaleType = row;
-    }
-    if([pickerView isEqual: keyPicker]){
-        aqp.currentKey = row;
-    }
+        aqp.currentScaleType = row + 1;
+    if([pickerView isEqual: keyPicker])
+        aqp.currentKey = row + 1;
+    // NSLog(@"scale is %i", row + 1);
 }
 
 - (void)viewDidUnload
