@@ -114,6 +114,7 @@ extern MUS147AQPlayer* aqp;
                     thisChord = chord[min];
                     break;
                 case 3:
+                    
                     thisChord = chord[firstInv];
                     break;
                 case 4:
